@@ -1,0 +1,38 @@
+﻿<Window x:Class="ProgramStarter.Views.StartProgramsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProgramStarter.Views"
+        xmlns:ViewModel="clr-namespace:ProgramStarter.ViewModels"
+        mc:Ignorable="d"
+        Title="Program Starter" Height="110" Width="400">
+    <Window.DataContext>
+        <ViewModel:StartProgramsViewModel/>
+    </Window.DataContext>
+
+    <Border Padding="10">
+        <StackPanel>
+            <Grid>
+                <!-- Text -->
+                <TextBlock Text="Programs will be started automatically in 3 seconds" HorizontalAlignment="Center" />
+                
+            </Grid>
+            
+            <!-- Buttons -->
+            <Grid Margin="10">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" x:Name="Start_Now_Button" Content="Start Now" Margin="0 0 10 0" />
+                <Button Grid.Column="1" x:Name="Dont_Start_Button" Content="Don't Start" Margin="10 0 0 0" />
+
+            </Grid>
+        </StackPanel>
+    </Border>
+    
+    
+</Window>

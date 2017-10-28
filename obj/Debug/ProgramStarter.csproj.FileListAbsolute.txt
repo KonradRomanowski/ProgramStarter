@@ -1,0 +1,15 @@
+D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\bin\Debug\ProgramStarter.exe.config
+D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\bin\Debug\ProgramStarter.exe
+D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\bin\Debug\ProgramStarter.pdb
+D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\obj\Debug\ProgramStarter.csprojResolveAssemblyReference.cache
+D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\obj\Debug\Views\StartProgramsWindow.g.cs
+D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\obj\Debug\App.g.cs
+D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\obj\Debug\ProgramStarter_MarkupCompile.cache
+D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\obj\Debug\ProgramStarter_MarkupCompile.lref
+D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\obj\Debug\Views\StartProgramsWindow.baml
+D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\obj\Debug\ProgramStarter.g.resources
+D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\obj\Debug\ProgramStarter.Properties.Resources.resources
+D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\obj\Debug\ProgramStarter.csproj.GenerateResource.Cache
+D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\obj\Debug\ProgramStarter.exe
+D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\obj\Debug\ProgramStarter.pdb
+D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\obj\Debug\GeneratedInternalTypeHelper.g.cs
