@@ -13,10 +13,15 @@
 
     <Border Padding="10">
         <StackPanel>
-            <Grid>
+            <Grid>             
+
                 <!-- Text -->
-                <TextBlock Text="Programs will be started automatically in 3 seconds" HorizontalAlignment="Center" />
-                
+                <TextBlock x:Name="Seconds_To_Start"  HorizontalAlignment="Center">
+                    <Run Text="Programs will be started automatically in" />
+                    <Run Text="{Binding Seconds_To_Start}" />
+                    <Run Text="seconds" />
+                </TextBlock>
+
             </Grid>
             
             <!-- Buttons -->

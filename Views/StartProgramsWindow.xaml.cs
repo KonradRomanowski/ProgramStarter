@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProgramStarter.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,10 @@ namespace ProgramStarter.Views
     /// </summary>
     public partial class StartProgramsWindow : Window
     {
+        
         public StartProgramsWindow()
-        {
-            InitializeComponent();
+        {            
+            InitializeComponent();        
         }
     }
 }

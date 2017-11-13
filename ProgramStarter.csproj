@@ -59,6 +59,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\ProgramToStart.cs" />
     <Compile Include="ViewModels\StartProgramsViewModel.cs" />
     <Compile Include="Views\StartProgramsWindow.xaml.cs">
       <DependentUpon>StartProgramsWindow.xaml</DependentUpon>
