@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProgramStarter.Views"
         xmlns:ViewModel="clr-namespace:ProgramStarter.ViewModels"
         mc:Ignorable="d"
-        Title="Program Starter" Height="110" Width="400">
+        Title="Program Starter" Height="135" Width="400">
     <Window.DataContext>
         <ViewModel:StartProgramsViewModel/>
     </Window.DataContext>
@@ -24,7 +24,7 @@
 
             </Grid>
             
-            <!-- Buttons -->
+            <!-- Start Now/Don't Start Buttons -->
             <Grid Margin="10">
 
                 <Grid.ColumnDefinitions>
@@ -36,6 +36,21 @@
                 <Button Grid.Column="1" x:Name="Dont_Start_Button" Content="Don't Start" Margin="10 0 0 0" />
 
             </Grid>
+
+            <!-- Options/Programs Buttons -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="2" x:Name="ProgramsToStart_Button" Content="Programs to start" Margin="0 0 10 0" Height="18" FontSize="9"/>
+                <Button Grid.Column="3" x:Name="Options_Button" Content="Options" Margin="10 0 0 0" Height="18" FontSize="9" />
+                
+            </Grid>
+            
         </StackPanel>
     </Border>
     
