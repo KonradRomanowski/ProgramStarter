@@ -59,6 +59,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Helpers\XMLHandler.cs" />
     <Compile Include="Models\ProgramToStart.cs" />
     <Compile Include="ViewModels\StartProgramsViewModel.cs" />
     <Compile Include="Views\StartProgramsWindow.xaml.cs">
@@ -92,7 +93,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Data\configuration.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Views\StartProgramsWindow.xaml">
       <SubType>Designer</SubType>

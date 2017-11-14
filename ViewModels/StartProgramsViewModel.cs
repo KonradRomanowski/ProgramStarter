@@ -1,9 +1,11 @@
-﻿using System;
+﻿using ProgramStarter.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ProgramStarter.ViewModels
 {
@@ -46,7 +48,20 @@ namespace ProgramStarter.ViewModels
                 //PropertyChanged(this, new PropertyChangedEventArgs(nameof(Seconds_To_Start)));                                
             }
         }
-               
+
+
+        public StartProgramsViewModel()
+        {
+            //just for tests - can be deleted
+            XMLHandler test = new XMLHandler(@"D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\Data\configuration.xml");
+            List<string> ttt = test.ReadProgramsToStartNamesList();
+
+            foreach (var item in ttt)
+            {
+                MessageBoxResult result = MessageBox.Show(item);
+            }
+
+        }       
 
     }
 }
