@@ -1,4 +1,5 @@
 ﻿using ProgramStarter.Helpers;
+using ProgramStarter.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -54,11 +55,11 @@ namespace ProgramStarter.ViewModels
         {
             //just for tests - can be deleted
             XMLHandler test = new XMLHandler(@"D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\Data\configuration.xml");
-            List<string> ttt = test.ReadProgramsToStartNamesList();
+            List<ProgramToStart> ttt = test.ReadProgramsToStartList();
 
             foreach (var item in ttt)
             {
-                MessageBoxResult result = MessageBox.Show(item);
+                MessageBoxResult result = MessageBox.Show(item.StartingOrder.ToString() + ' ' + item.ProgramName + ' ' + item.Path);
             }
 
         }       

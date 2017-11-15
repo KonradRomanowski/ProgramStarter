@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgramStarter.Models
 {
-    class ProgramToStart
+    public class ProgramToStart
     {
         public string ProgramName { get; private set; }
         public string Path { get; private set; }
