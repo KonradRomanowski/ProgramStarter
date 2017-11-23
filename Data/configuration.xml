@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ProgramStarter>  
+<ProgramStarter>
+  <ProgramSettings>
+    
+  </ProgramSettings>
   <ProgramsToStart>
     <Program order="1" name="test1" path="D:/test1/" />
     <Program order="2" name="test2" path="D:/test2/" />
