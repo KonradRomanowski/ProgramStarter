@@ -62,6 +62,7 @@
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\XMLHandler.cs" />
     <Compile Include="Models\ProgramToStart.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\StartProgramsViewModel.cs" />
     <Compile Include="Views\StartProgramsWindow.xaml.cs">
       <DependentUpon>StartProgramsWindow.xaml</DependentUpon>
