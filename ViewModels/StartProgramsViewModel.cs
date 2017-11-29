@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace ProgramStarter.ViewModels
 {
     public class StartProgramsViewModel : BaseViewModel
     {
-        private string mSeconds_To_Start;  
+        private string mSeconds_To_Start;
+        public ICommand StartNowButtonCommand { get; private set; }
 
         public string Seconds_To_Start
         {
@@ -42,8 +44,15 @@ namespace ProgramStarter.ViewModels
             {
                 MessageBoxResult result = MessageBox.Show(item.StartingOrder.ToString() + ' ' + item.ProgramName + ' ' + item.Path);
             }
+            //------
 
-        }       
+            StartNowButtonCommand = new RelayCommand(StartNowButtonClicked);
 
+        }
+
+        private void StartNowButtonClicked(object obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

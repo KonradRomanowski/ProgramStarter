@@ -32,7 +32,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" x:Name="Start_Now_Button" Content="Start Now" Margin="0 0 10 0" />
+                <Button Grid.Column="0" x:Name="Start_Now_Button" Content="Start Now" Margin="0 0 10 0" Command="{Binding StartNowButtonCommand}" />
                 <Button Grid.Column="1" x:Name="Dont_Start_Button" Content="Don't Start" Margin="10 0 0 0" />
 
             </Grid>
