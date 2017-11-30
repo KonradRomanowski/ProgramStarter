@@ -15,6 +15,9 @@ namespace ProgramStarter.ViewModels
     {
         private string mSeconds_To_Start;
         public ICommand StartNowButtonCommand { get; private set; }
+        public ICommand DontStartButtonCommand { get; private set; }
+        public ICommand OptionsButtonCommand { get; private set; }
+        public ICommand ProgramsToStartButtonCommand { get; private set; }
 
         public string Seconds_To_Start
         {
@@ -46,8 +49,27 @@ namespace ProgramStarter.ViewModels
             }
             //------
 
+            //Binding for buttons
             StartNowButtonCommand = new RelayCommand(StartNowButtonClicked);
+            DontStartButtonCommand = new RelayCommand(DontStartButtonClicked);
+            OptionsButtonCommand = new RelayCommand(OptionsButtonClicked);
+            ProgramsToStartButtonCommand = new RelayCommand(ProgramsToStartButtonClicked);
 
+        }
+
+        private void ProgramsToStartButtonClicked(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OptionsButtonClicked(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DontStartButtonClicked(object obj)
+        {
+            throw new NotImplementedException();
         }
 
         private void StartNowButtonClicked(object obj)
