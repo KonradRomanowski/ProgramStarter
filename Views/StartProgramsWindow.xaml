@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:ProgramStarter.Views"
         xmlns:ViewModel="clr-namespace:ProgramStarter.ViewModels"
         mc:Ignorable="d"
-        Title="Program Starter" Height="135" Width="400">
+        Title="Program Starter" Height="135" Width="400"
+        WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <ViewModel:StartProgramsViewModel/>
     </Window.DataContext>

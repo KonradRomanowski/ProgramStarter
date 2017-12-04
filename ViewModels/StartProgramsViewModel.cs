@@ -13,11 +13,12 @@ namespace ProgramStarter.ViewModels
 {
     public class StartProgramsViewModel : BaseViewModel
     {
-        private string mSeconds_To_Start;
+        #region Variables Definition
+        private string mSeconds_To_Start;        
         public ICommand StartNowButtonCommand { get; private set; }
         public ICommand DontStartButtonCommand { get; private set; }
         public ICommand OptionsButtonCommand { get; private set; }
-        public ICommand ProgramsToStartButtonCommand { get; private set; }
+        public ICommand ProgramsToStartButtonCommand { get; private set; }               
 
         public string Seconds_To_Start
         {
@@ -34,19 +35,20 @@ namespace ProgramStarter.ViewModels
                 mSeconds_To_Start = value;
                 OnPropertyChanged(nameof(Seconds_To_Start));                                               
             }
-        }
+        }  
+        #endregion
 
 
         public StartProgramsViewModel()
         {
-            //just for tests - can be deleted
-            XMLHandler test = new XMLHandler(@"D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\Data\configuration.xml");
-            List<ProgramToStart> ttt = test.ReadProgramsToStartList();
+            //just for tests - can be deleted            
+            //XMLHandler test = new XMLHandler(@"D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\Data\configuration.xml");
+            //List<ProgramToStart> ttt = test.ReadProgramsToStartList();
 
-            foreach (var item in ttt)
-            {
-                MessageBoxResult result = MessageBox.Show(item.StartingOrder.ToString() + ' ' + item.ProgramName + ' ' + item.Path);
-            }
+            //foreach (var item in ttt)
+            //{
+            //    MessageBoxResult result = MessageBox.Show(item.StartingOrder.ToString() + ' ' + item.ProgramName + ' ' + item.Path);
+            //}
             //------
 
             //Binding for buttons
@@ -64,7 +66,7 @@ namespace ProgramStarter.ViewModels
 
         private void OptionsButtonClicked(object obj)
         {
-            throw new NotImplementedException();
+            Application.Current.MainWindow.Height = 200;
         }
 
         private void DontStartButtonClicked(object obj)
