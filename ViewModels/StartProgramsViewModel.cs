@@ -21,6 +21,7 @@ namespace ProgramStarter.ViewModels
         #region Variables Definition
         private string mSeconds_To_Start;
         private string mOptionsButtonContent;
+        private Visibility mOptionsGridVisibility;
         public ICommand StartNowButtonCommand { get; private set; }
         public ICommand DontStartButtonCommand { get; private set; }
         public ICommand OptionsButtonCommand { get; private set; }
@@ -60,12 +61,32 @@ namespace ProgramStarter.ViewModels
             }
         }
 
+        public Visibility OptionsGridVisibility
+        {
+            get
+            {
+                return mOptionsGridVisibility;
+            }
+
+            set
+            {
+                if (mOptionsGridVisibility == value)
+                    return;
+
+                mOptionsGridVisibility = value;
+                OnPropertyChanged(nameof(OptionsGridVisibility));
+            }
+        }
+
         #endregion
 
 
         public StartProgramsViewModel()
         {
+            //Assigning startup values for controls
+            OptionsGridVisibility = Visibility.Collapsed;
             OptionsButtonContent = "Options >>>";
+
             //just for tests - can be deleted            
             //XMLHandler test = new XMLHandler(@"D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\Data\configuration.xml");
             //List<ProgramToStart> ttt = test.ReadProgramsToStartList();
@@ -95,11 +116,13 @@ namespace ProgramStarter.ViewModels
             if (Application.Current.MainWindow.Height == StartProgramWindowHeightSmall)
             {
                 Application.Current.MainWindow.Height = StartProgramWindowHeightBig;
+                OptionsGridVisibility = Visibility.Visible;
                 OptionsButtonContent = "Options <<<";
             }
             else
             {
                 Application.Current.MainWindow.Height = StartProgramWindowHeightSmall;
+                OptionsGridVisibility = Visibility.Collapsed;
                 OptionsButtonContent = "Options >>>";
             }
             
