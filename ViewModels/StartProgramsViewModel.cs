@@ -13,8 +13,14 @@ namespace ProgramStarter.ViewModels
 {
     public class StartProgramsViewModel : BaseViewModel
     {
+        #region Statics Definition
+        public static int StartProgramWindowHeightBig = 300;
+        public static int StartProgramWindowHeightSmall = 135;
+        #endregion
+
         #region Variables Definition
-        private string mSeconds_To_Start;        
+        private string mSeconds_To_Start;
+        private string mOptionsButtonContent;
         public ICommand StartNowButtonCommand { get; private set; }
         public ICommand DontStartButtonCommand { get; private set; }
         public ICommand OptionsButtonCommand { get; private set; }
@@ -35,12 +41,31 @@ namespace ProgramStarter.ViewModels
                 mSeconds_To_Start = value;
                 OnPropertyChanged(nameof(Seconds_To_Start));                                               
             }
-        }  
+        }
+
+        public string OptionsButtonContent
+        {
+            get
+            {
+                return mOptionsButtonContent;
+            }
+
+            set
+            {
+                if (mOptionsButtonContent == value)
+                    return;
+
+                mOptionsButtonContent = value;
+                OnPropertyChanged(nameof(OptionsButtonContent));
+            }
+        }
+
         #endregion
 
 
         public StartProgramsViewModel()
         {
+            OptionsButtonContent = "Options >>>";
             //just for tests - can be deleted            
             //XMLHandler test = new XMLHandler(@"D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\Data\configuration.xml");
             //List<ProgramToStart> ttt = test.ReadProgramsToStartList();
@@ -66,7 +91,18 @@ namespace ProgramStarter.ViewModels
 
         private void OptionsButtonClicked(object obj)
         {
-            Application.Current.MainWindow.Height = 200;
+            //Switching of StartProgramsWindow Height funcionality and dynamically creating/deleting new controls
+            if (Application.Current.MainWindow.Height == StartProgramWindowHeightSmall)
+            {
+                Application.Current.MainWindow.Height = StartProgramWindowHeightBig;
+                OptionsButtonContent = "Options <<<";
+            }
+            else
+            {
+                Application.Current.MainWindow.Height = StartProgramWindowHeightSmall;
+                OptionsButtonContent = "Options >>>";
+            }
+            
         }
 
         private void DontStartButtonClicked(object obj)

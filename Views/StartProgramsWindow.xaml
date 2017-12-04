@@ -48,7 +48,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Grid.Column="2" x:Name="ProgramsToStart_Button" Content="Programs to start" Margin="0 0 10 0" Height="18" FontSize="9" Command="{Binding ProgramsToStartButtonCommand}" />
-                <Button Grid.Column="3" x:Name="Options_Button" Content="Options" Margin="10 0 0 0" Height="18" FontSize="9" Command="{Binding OptionsButtonCommand}" />
+                <Button Grid.Column="3" x:Name="Options_Button" Content="{Binding OptionsButtonContent}" Margin="10 0 0 0" Height="18" FontSize="9" Command="{Binding OptionsButtonCommand}" />
                 
             </Grid>
             
