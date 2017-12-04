@@ -47,7 +47,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="2" x:Name="ProgramsToStart_Button" Content="Programs to start" Margin="0 0 10 0" Height="18" FontSize="9" Command="{Binding ProgramsToStartButtonCommand}" />
+                <Button Grid.Column="2" x:Name="ProgramsToStart_Button" Content="{Binding ProgramsToStartButtonContent}" Margin="0 0 10 0" Height="18" FontSize="9" Command="{Binding ProgramsToStartButtonCommand}" />
                 <Button Grid.Column="3" x:Name="Options_Button" Content="{Binding OptionsButtonContent}" Margin="10 0 0 0" Height="18" FontSize="9" Command="{Binding OptionsButtonCommand}" />
                 
             </Grid>  
@@ -66,6 +66,24 @@
 
                 <TextBlock Grid.Column="0" HorizontalAlignment="Center" >
                     <Run Text="Choose Language" />
+                </TextBlock>
+
+            </Grid>
+
+            <!-- Grid for showing items after button press - Programs To Start -->
+            <Grid x:Name="ProgramsToStartGrid" Margin="30">
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Visibility" Value="{Binding ProgramsToStartGridVisibility}" />
+                    </Style>
+                </Grid.Style>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" HorizontalAlignment="Center" >
+                    <Run Text="Programs to Start" />
                 </TextBlock>
 
             </Grid>

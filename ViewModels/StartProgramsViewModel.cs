@@ -22,6 +22,8 @@ namespace ProgramStarter.ViewModels
         private string mSeconds_To_Start;
         private string mOptionsButtonContent;
         private Visibility mOptionsGridVisibility;
+        private string mProgramsToStartButtonContent;
+        private Visibility mProgramsToStartGridVisibility;
         public ICommand StartNowButtonCommand { get; private set; }
         public ICommand DontStartButtonCommand { get; private set; }
         public ICommand OptionsButtonCommand { get; private set; }
@@ -78,6 +80,40 @@ namespace ProgramStarter.ViewModels
             }
         }
 
+        public string ProgramsToStartButtonContent
+        {
+            get
+            {
+                return mProgramsToStartButtonContent;
+            }
+
+            set
+            {
+                if (mProgramsToStartButtonContent == value)
+                    return;
+
+                mProgramsToStartButtonContent = value;
+                OnPropertyChanged(nameof(ProgramsToStartButtonContent));
+            }
+        }
+
+        public Visibility ProgramsToStartGridVisibility
+        {
+            get
+            {
+                return mProgramsToStartGridVisibility;
+            }
+
+            set
+            {
+                if (mProgramsToStartGridVisibility == value)
+                    return;
+
+                mProgramsToStartGridVisibility = value;
+                OnPropertyChanged(nameof(ProgramsToStartGridVisibility));
+            }
+        }
+
         #endregion
 
 
@@ -86,6 +122,8 @@ namespace ProgramStarter.ViewModels
             //Assigning startup values for controls
             OptionsGridVisibility = Visibility.Collapsed;
             OptionsButtonContent = "Options >>>";
+            ProgramsToStartGridVisibility = Visibility.Collapsed;
+            ProgramsToStartButtonContent = "Programs to Start >>>";
 
             //just for tests - can be deleted            
             //XMLHandler test = new XMLHandler(@"D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\Data\configuration.xml");
@@ -107,17 +145,33 @@ namespace ProgramStarter.ViewModels
 
         private void ProgramsToStartButtonClicked(object obj)
         {
-            throw new NotImplementedException();
+            //Switching of StartProgramsWindow Height funcionality and dynamically changing visibility of Programs To Start Grid
+            if (ProgramsToStartGridVisibility != Visibility.Visible)
+            {
+                OptionsGridVisibility = Visibility.Collapsed;
+                OptionsButtonContent = "Options >>>";
+                Application.Current.MainWindow.Height = StartProgramWindowHeightBig;
+                ProgramsToStartGridVisibility = Visibility.Visible;
+                ProgramsToStartButtonContent = "Programs to Start <<<";                
+            }
+            else
+            {
+                Application.Current.MainWindow.Height = StartProgramWindowHeightSmall;
+                ProgramsToStartGridVisibility = Visibility.Collapsed;
+                ProgramsToStartButtonContent = "Programs to Start >>>";
+            }
         }
 
         private void OptionsButtonClicked(object obj)
         {
-            //Switching of StartProgramsWindow Height funcionality and dynamically creating/deleting new controls
-            if (Application.Current.MainWindow.Height == StartProgramWindowHeightSmall)
+            //Switching of StartProgramsWindow Height funcionality and dynamically changing visibility of Options Grid
+            if (OptionsGridVisibility != Visibility.Visible)
             {
+                ProgramsToStartGridVisibility = Visibility.Collapsed;
+                ProgramsToStartButtonContent = "Programs to Start >>>";
                 Application.Current.MainWindow.Height = StartProgramWindowHeightBig;
                 OptionsGridVisibility = Visibility.Visible;
-                OptionsButtonContent = "Options <<<";
+                OptionsButtonContent = "Options <<<";                
             }
             else
             {
