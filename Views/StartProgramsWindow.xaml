@@ -53,38 +53,63 @@
             </Grid>  
             
             <!-- Grid for showing items after button press - Options -->
-            <Grid x:Name="OptionsGrid" Margin="30">
+            <Grid x:Name="OptionsGrid" Margin="10">
                 <Grid.Style>
                     <Style TargetType="Grid">
                         <Setter Property="Visibility" Value="{Binding OptionsGridVisibility}" />
                     </Style>
                 </Grid.Style>
+                
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.ColumnSpan="3" Grid.Row="0" HorizontalAlignment="Center" >
+                    <Run Text="Options" />
+                </TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" >
                     <Run Text="Choose Language" />
+                </TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" >
+                    <Run Text="Auto Start" />
                 </TextBlock>
 
             </Grid>
 
             <!-- Grid for showing items after button press - Programs To Start -->
-            <Grid x:Name="ProgramsToStartGrid" Margin="30">
+            <Grid x:Name="ProgramsToStartGrid" Margin="10">
                 <Grid.Style>
                     <Style TargetType="Grid">
                         <Setter Property="Visibility" Value="{Binding ProgramsToStartGridVisibility}" />
                     </Style>
                 </Grid.Style>
+                
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" HorizontalAlignment="Center" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" >
                     <Run Text="Programs to Start" />
                 </TextBlock>
+
+                <ListBox Grid.Column="0" Grid.Row="1" Name="ProgramsToStartListBox" >
+                    
+                </ListBox>
 
             </Grid>
 

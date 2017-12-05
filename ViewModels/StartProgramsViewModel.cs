@@ -125,7 +125,7 @@ namespace ProgramStarter.ViewModels
             ProgramsToStartGridVisibility = Visibility.Collapsed;
             ProgramsToStartButtonContent = "Programs to Start >>>";
 
-            //just for tests - can be deleted            
+            //just for tests - can be deleted  - using of XMLHandler to read Programs to start from xml          
             //XMLHandler test = new XMLHandler(@"D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\Data\configuration.xml");
             //List<ProgramToStart> ttt = test.ReadProgramsToStartList();
 
