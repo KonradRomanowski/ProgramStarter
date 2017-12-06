@@ -20,6 +20,8 @@ namespace ProgramStarter.ViewModels
 
         #region Variables Definition
 
+        public List<ProgramToStart> ProgramsToStartList { get; set; }
+
         #region ButtonCommands
         public ICommand StartNowButtonCommand { get; private set; }
         public ICommand DontStartButtonCommand { get; private set; }
@@ -144,8 +146,8 @@ namespace ProgramStarter.ViewModels
             ProgramsToStartButtonContent = "Programs to Start >>>";
 
             //just for tests - can be deleted  - using of XMLHandler to read Programs to start from xml          
-            //XMLHandler test = new XMLHandler(@"D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\Data\configuration.xml");
-            //List<ProgramToStart> ttt = test.ReadProgramsToStartList();
+            XMLHandler test = new XMLHandler(@"D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\Data\configuration.xml");
+            ProgramsToStartList = test.ReadProgramsToStartList();
 
             //foreach (var item in ttt)
             //{
