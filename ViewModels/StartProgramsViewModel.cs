@@ -19,15 +19,16 @@ namespace ProgramStarter.ViewModels
         #endregion
 
         #region Variables Definition
-        private string mSeconds_To_Start;
-        private string mOptionsButtonContent;
-        private Visibility mOptionsGridVisibility;
-        private string mProgramsToStartButtonContent;
-        private Visibility mProgramsToStartGridVisibility;
+
+        #region ButtonCommands
         public ICommand StartNowButtonCommand { get; private set; }
         public ICommand DontStartButtonCommand { get; private set; }
         public ICommand OptionsButtonCommand { get; private set; }
-        public ICommand ProgramsToStartButtonCommand { get; private set; }               
+        public ICommand ProgramsToStartButtonCommand { get; private set; }
+        #endregion ButtonCommands
+
+        #region Seconds_To_Start
+        private string mSeconds_To_Start;
 
         public string Seconds_To_Start
         {
@@ -45,6 +46,10 @@ namespace ProgramStarter.ViewModels
                 OnPropertyChanged(nameof(Seconds_To_Start));                                               
             }
         }
+        #endregion Seconds_To_Start
+
+        #region OptionsButtonContent
+        private string mOptionsButtonContent;
 
         public string OptionsButtonContent
         {
@@ -62,6 +67,10 @@ namespace ProgramStarter.ViewModels
                 OnPropertyChanged(nameof(OptionsButtonContent));
             }
         }
+        #endregion OptionsButtonContent
+
+        #region OptionsGridVisibility
+        private Visibility mOptionsGridVisibility;
 
         public Visibility OptionsGridVisibility
         {
@@ -79,6 +88,10 @@ namespace ProgramStarter.ViewModels
                 OnPropertyChanged(nameof(OptionsGridVisibility));
             }
         }
+        #endregion OptionsGridVisibility
+
+        #region ProgramsToStartButtonContent
+        private string mProgramsToStartButtonContent;
 
         public string ProgramsToStartButtonContent
         {
@@ -96,6 +109,10 @@ namespace ProgramStarter.ViewModels
                 OnPropertyChanged(nameof(ProgramsToStartButtonContent));
             }
         }
+        #endregion ProgramsToStartButtonContent
+
+        #region ProgramsToStartGridVisibility
+        private Visibility mProgramsToStartGridVisibility;
 
         public Visibility ProgramsToStartGridVisibility
         {
@@ -113,8 +130,9 @@ namespace ProgramStarter.ViewModels
                 OnPropertyChanged(nameof(ProgramsToStartGridVisibility));
             }
         }
+        #endregion ProgramsToStartGridVisibility
 
-        #endregion
+        #endregion Variables Definition
 
 
         public StartProgramsViewModel()

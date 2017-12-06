@@ -107,7 +107,7 @@
                     <Run Text="Programs to Start" />
                 </TextBlock>
 
-                <ListBox Grid.Column="0" Grid.Row="1" Name="ProgramsToStartListBox" >
+                <ListBox Grid.Column="0" Grid.Row="1" Name="ProgramsToStartListBox" Height="100" Margin="10">
                     
                 </ListBox>
 
