@@ -107,28 +107,16 @@
                     <Run Text="Programs to Start" />
                 </TextBlock>
 
-                <ListBox Grid.Column="0" Grid.Row="1" Name="ProgramsToStartListBox" Height="100" Margin="10" ItemsSource="{Binding ProgramsToStartList}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                
+                <ListView Grid.Column="0" Grid.Row="1" Name="ProgramsToStartListView" Height="100" Margin="10" ItemsSource="{Binding ProgramsToStartList}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Order" Width="40" DisplayMemberBinding="{Binding StartingOrder}" />
+                            <GridViewColumn Header="Name" Width="70" DisplayMemberBinding="{Binding ProgramName}" />
+                            <GridViewColumn Header="Path" Width="200" DisplayMemberBinding="{Binding Path}" />
+                        </GridView>
+                    </ListView.View>
 
-                                    <TextBlock Grid.Column="0" Text="{Binding StartingOrder}" />
-                                    <TextBlock Grid.Column="1" Text="{Binding ProgramName}" />
-                                    <TextBlock Grid.Column="2" Text="{Binding Path}" />
-                                </Grid>
-
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                </ListView>
 
             </Grid>
 
