@@ -71,16 +71,24 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.ColumnSpan="3" Grid.Row="0" HorizontalAlignment="Center" >
                     <Run Text="Options" />
                 </TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" >
+                <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Margin="5">
                     <Run Text="Choose Language" />
                 </TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" >
+                <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Margin="5">
                     <Run Text="Auto Start" />
+                </TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" Margin="5">
+                    <Run Text="Seconds to start" />
+                </TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" Margin="5">
+                    <Run Text="Gap between programs start" />
                 </TextBlock>
 
             </Grid>
