@@ -91,6 +91,8 @@
                     <Run Text="Gap between programs start" />
                 </TextBlock>
 
+                <Button Grid.Row="5" Grid.Column="2" x:Name="OptionsSaveButton" Width="60" Content="Save" />
+
             </Grid>
 
             <!-- Grid for showing items after button press - Programs To Start -->
