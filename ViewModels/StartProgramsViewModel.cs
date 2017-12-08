@@ -14,7 +14,7 @@ namespace ProgramStarter.ViewModels
     public class StartProgramsViewModel : BaseViewModel
     {
         #region Statics Definition
-        public static int StartProgramWindowHeightBig = 300;
+        public static int StartProgramWindowHeightBig = 305;
         public static int StartProgramWindowHeightSmall = 135;
         #endregion
 

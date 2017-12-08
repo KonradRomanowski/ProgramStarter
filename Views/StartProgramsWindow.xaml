@@ -126,6 +126,8 @@
 
                 </ListView>
 
+                <Button x:Name="ProgramsToStartSaveButton" Grid.Row="3" HorizontalAlignment="Right" Width="60" Content="Save" />
+
             </Grid>
 
         </StackPanel>      
