@@ -1,7 +1,9 @@
-﻿using ProgramStarter.Helpers;
+﻿using GongSolutions.Wpf.DragDrop;
+using ProgramStarter.Helpers;
 using ProgramStarter.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -11,7 +13,7 @@ using System.Windows.Input;
 
 namespace ProgramStarter.ViewModels
 {
-    public class StartProgramsViewModel : BaseViewModel
+    public class StartProgramsViewModel : BaseViewModel//, IDropTarget
     {
         #region Statics Definition
         public static int StartProgramWindowHeightBig = 305;
@@ -20,7 +22,7 @@ namespace ProgramStarter.ViewModels
 
         #region Variables Definition
 
-        public List<ProgramToStart> ProgramsToStartList { get; set; }
+        public ObservableCollection<ProgramToStart> ProgramsToStartList { get; set; }
 
         #region ButtonCommands
         public ICommand StartNowButtonCommand { get; private set; }
@@ -147,7 +149,7 @@ namespace ProgramStarter.ViewModels
 
             //just for tests - can be deleted  - using of XMLHandler to read Programs to start from xml          
             XMLHandler test = new XMLHandler(@"D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\Data\configuration.xml");
-            ProgramsToStartList = test.ReadProgramsToStartList();
+            ProgramsToStartList = test.ReadProgramsToStartCollection();
 
             //foreach (var item in ttt)
             //{

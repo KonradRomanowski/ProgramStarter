@@ -1,6 +1,7 @@
 ﻿using ProgramStarter.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -73,6 +74,38 @@ namespace ProgramStarter.Helpers
 
             return programsList;
         }
+
+        public ObservableCollection<ProgramToStart> ReadProgramsToStartCollection()
+        {
+            ObservableCollection<ProgramToStart> programsList = new ObservableCollection<ProgramToStart>();
+            XmlDocument doc = new XmlDocument();
+            int temp = 0;
+
+            if (File.Exists(XMLPath))
+            {
+                doc.Load(XMLPath);
+
+                XmlNodeList programsToStartNodes = doc.DocumentElement.SelectNodes("/ProgramStarter/ProgramsToStart/Program");
+
+                foreach (XmlNode programNode in programsToStartNodes)
+                {
+                    ProgramToStart _program = new ProgramToStart(programNode.Attributes["name"].Value, programNode.Attributes["path"].Value);
+                    if (int.TryParse(programNode.Attributes["order"].Value, out temp))
+                        _program.StartingOrder = int.Parse(programNode.Attributes["order"].Value);
+                    else
+                        throw new Exception("Starting Order could not be parsed into int for: " + _program.ProgramName);
+                    programsList.Add(_program);
+                }
+            }
+            else
+            {
+                throw new Exception("XML file not found at path: " + XMLPath);
+            }
+
+            return programsList;
+        }
+
+
 
     }
 }

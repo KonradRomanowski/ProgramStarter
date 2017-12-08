@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProgramStarter.Views"
         xmlns:ViewModel="clr-namespace:ProgramStarter.ViewModels"
+        xmlns:dd="urn:gong-wpf-dragdrop"
         mc:Ignorable="d"
         Title="Program Starter" Height="135" Width="400"
         WindowStartupLocation="CenterScreen">
@@ -117,17 +118,18 @@
                     <Run Text="Programs to Start" />
                 </TextBlock>
 
-                <ListView Grid.Column="0" Grid.Row="1" Name="ProgramsToStartListView" Height="100" Margin="10" ItemsSource="{Binding ProgramsToStartList}">
+                <ListView Grid.Column="0" Grid.Row="1" Name="ProgramsToStartListView" Height="100" Margin="10" ItemsSource="{Binding ProgramsToStartList}" IsSynchronizedWithCurrentItem="True"
+                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Order" Width="40" DisplayMemberBinding="{Binding StartingOrder}" />
                             <GridViewColumn Header="Name" Width="70" DisplayMemberBinding="{Binding ProgramName}" />
-                            <GridViewColumn Header="Path" Width="200" DisplayMemberBinding="{Binding Path}" />
+                            <GridViewColumn Header="Path" Width="180" DisplayMemberBinding="{Binding Path}" />
                         </GridView>
                     </ListView.View>
 
-                </ListView>
-
+                </ListView> 
+                
                 <Button x:Name="ProgramsToStartSaveButton" Grid.Row="3" HorizontalAlignment="Right" Width="60" Content="Save" />
 
             </Grid>
