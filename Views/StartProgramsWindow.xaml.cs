@@ -30,5 +30,10 @@ namespace ProgramStarter.Views
         {
             Application.Current.MainWindow = this;
         }
+
+        private void GridViewColumn_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+
+        }
     }
 }

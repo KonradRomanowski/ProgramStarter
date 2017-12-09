@@ -118,8 +118,8 @@
                     <Run Text="Programs to Start" />
                 </TextBlock>
 
-                <ListView Grid.Column="0" Grid.Row="1" Name="ProgramsToStartListView" Height="100" Margin="10" ItemsSource="{Binding ProgramsToStartList}" IsSynchronizedWithCurrentItem="True"
-                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" >
+                <ListView Grid.Column="0" Grid.Row="1" Name="ProgramsToStartListView" Height="100" Margin="10" ItemsSource="{Binding ProgramsToStartList}" 
+                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" dd:DragDrop.DropHandler="{Binding}" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Order" Width="40" DisplayMemberBinding="{Binding StartingOrder}" />
