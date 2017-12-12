@@ -255,8 +255,19 @@ namespace ProgramStarter.ViewModels
             }
             else
             {
-                //TODO: checking if new position is the last in the list - method below will throw outofbounds exception
-                ProgramsToStartList.Move(sourceItem.StartingOrder - 1, targetItem.StartingOrder);
+                //Checking if new position is the last in the list - if it is last, put item in the last position
+                //To prevent ArgumentOutOfRange Exception for ProgramsToStartList.Move()
+                //TODO: ArgumentNull exception
+                
+                if (targetItem.StartingOrder == ProgramsToStartList.Count)
+                {
+                    ProgramsToStartList.Move(sourceItem.StartingOrder - 1, targetItem.StartingOrder - 1);
+                }
+                else
+                {
+                    ProgramsToStartList.Move(sourceItem.StartingOrder - 1, targetItem.StartingOrder);
+                }                
+                    
             }
 
             //After source Item was moved to the new position we need to update StartingOrder property of all ProgramsToStart
