@@ -119,7 +119,8 @@
                 </TextBlock>
 
                 <ListView Grid.Column="0" Grid.Row="1" Name="ProgramsToStartListView" Height="100" Margin="10" ItemsSource="{Binding ProgramsToStartList}" 
-                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" dd:DragDrop.DropHandler="{Binding}" >
+                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" dd:DragDrop.DropHandler="{Binding}" 
+                          ToolTip="Right click to Add/Delete items">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Order" Width="40" DisplayMemberBinding="{Binding StartingOrder}" />
