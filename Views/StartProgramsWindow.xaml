@@ -129,6 +129,16 @@
                         </GridView>
                     </ListView.View>
 
+                    <ListView.ContextMenu>
+                        <ContextMenu Name="ProgramsToStartListViewContextMenu" StaysOpen="true" Background="WhiteSmoke" >
+                            <ContextMenu.BitmapEffect>
+                                <BitmapEffectGroup/>
+                            </ContextMenu.BitmapEffect>
+                            <MenuItem Header="Add" Name="AddProgramContextMenu" />
+                            <MenuItem Header="Remove" Name="RemoveProgramContextMenu" />
+                        </ContextMenu>
+                    </ListView.ContextMenu>
+
                 </ListView> 
                 
                 <Button x:Name="ProgramsToStartSaveButton" Grid.Row="3" HorizontalAlignment="Right" Width="60" Content="Save" />
