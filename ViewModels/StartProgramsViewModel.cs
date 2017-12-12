@@ -247,27 +247,26 @@ namespace ProgramStarter.ViewModels
             ProgramToStart sourceItem = dropInfo.Data as ProgramToStart;   //dragged item
             ProgramToStart targetItem = dropInfo.TargetItem as ProgramToStart;   //item on with user drops the sourceitem
             RelativeInsertPosition positionOfItem = dropInfo.InsertPosition;   //position (before or after targetItem)
-            
+            int insertIndex = dropInfo.InsertIndex;   //positon in ProgramsToStartList where item was dropped            
+
             //Checking if item was dropped before or after targetItem and moving into correct position in ProgramsToStartList
             if (positionOfItem == (RelativeInsertPosition.BeforeTargetItem | RelativeInsertPosition.TargetItemCenter))
             {
-                ProgramsToStartList.Move(sourceItem.StartingOrder - 1, targetItem.StartingOrder - 1);
+                ProgramsToStartList.Move(sourceItem.StartingOrder - 1, insertIndex);
             }
             else
             {
                 //Checking if new position is the last in the list - if it is last, put item in the last position
-                //To prevent ArgumentOutOfRange Exception for ProgramsToStartList.Move()
-                //TODO: ArgumentNull exception
-                
-                if (targetItem.StartingOrder == ProgramsToStartList.Count)
+                //To prevent ArgumentOutOfRange Exception for ProgramsToStartList.Move()   
+                if (insertIndex == ProgramsToStartList.Count)
                 {
-                    ProgramsToStartList.Move(sourceItem.StartingOrder - 1, targetItem.StartingOrder - 1);
+                    ProgramsToStartList.Move(sourceItem.StartingOrder - 1, insertIndex - 1);
                 }
                 else
                 {
-                    ProgramsToStartList.Move(sourceItem.StartingOrder - 1, targetItem.StartingOrder);
-                }                
-                    
+                    ProgramsToStartList.Move(sourceItem.StartingOrder - 1, insertIndex);
+                }
+
             }
 
             //After source Item was moved to the new position we need to update StartingOrder property of all ProgramsToStart
