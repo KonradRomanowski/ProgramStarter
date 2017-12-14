@@ -217,6 +217,8 @@ namespace ProgramStarter.ViewModels
         private void RemoveProgramContextMenuItemClicked(object obj)
         {
             ProgramsToStartList.Remove(SelectedProgramOnProgramsToStartListView);
+            UpdateStartingOrdersInProgramsToStartListView();
+            RefreshProgramsToStartListView();
         }
 
         #region ProgramsToStart and Options buttons clicked events
@@ -260,6 +262,8 @@ namespace ProgramStarter.ViewModels
         }
         #endregion
 
+        #region StartNow and DontStart buttons clicked events
+
         private void DontStartButtonClicked(object obj)
         {
             throw new NotImplementedException();
@@ -269,6 +273,7 @@ namespace ProgramStarter.ViewModels
         {
             throw new NotImplementedException();
         }
+        #endregion
 
         #region Drag and Drop methods for ProgramsToStartListView
 
@@ -306,10 +311,7 @@ namespace ProgramStarter.ViewModels
             }
 
             //After source Item was moved to the new position we need to update StartingOrder property of all ProgramsToStart
-            for (int i = 0; i < ProgramsToStartList.Count; i++)
-            {
-                ProgramsToStartList[i].StartingOrder = i + 1;                
-            }
+            UpdateStartingOrdersInProgramsToStartListView();
 
             //Then we need to refresh the ListView
             RefreshProgramsToStartListView();
@@ -317,7 +319,20 @@ namespace ProgramStarter.ViewModels
         }
         #endregion
 
+        #region Update of Programs StartingOrders in ProgramsToStartListView
+
+        public void UpdateStartingOrdersInProgramsToStartListView()
+        {
+            for (int i = 0; i < ProgramsToStartList.Count; i++)
+            {
+                ProgramsToStartList[i].StartingOrder = i + 1;
+            }
+        }
+
+        #endregion
+
         #region Refresh of ProgramsToStartListView
+
         public void RefreshProgramsToStartListView()
         {
             //
