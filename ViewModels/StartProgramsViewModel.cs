@@ -170,7 +170,7 @@ namespace ProgramStarter.ViewModels
             //just for tests - can be deleted  - using of XMLHandler to read Programs to start from xml          
             XMLHandler test = new XMLHandler(@"D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\Data\configuration.xml");
             ProgramsToStartList = test.ReadProgramsToStartCollection();
-            ProgramsToStartList.CollectionChanged += ProgramsToStartList_CollectionChanged;            
+            //ProgramsToStartList.CollectionChanged += ProgramsToStartList_CollectionChanged;            
 
             //foreach (var item in ttt)
             //{
@@ -219,6 +219,7 @@ namespace ProgramStarter.ViewModels
             ProgramsToStartList.Remove(SelectedProgramOnProgramsToStartListView);
         }
 
+        #region ProgramsToStart and Options buttons clicked events
         private void ProgramsToStartButtonClicked(object obj)
         {
             //Switching of StartProgramsWindow Height funcionality and dynamically changing visibility of Programs To Start Grid
@@ -257,6 +258,7 @@ namespace ProgramStarter.ViewModels
             }
             
         }
+        #endregion
 
         private void DontStartButtonClicked(object obj)
         {
@@ -267,6 +269,8 @@ namespace ProgramStarter.ViewModels
         {
             throw new NotImplementedException();
         }
+
+        #region Drag and Drop methods for ProgramsToStartListView
 
         public void DragOver(IDropInfo dropInfo)
         {
@@ -308,6 +312,14 @@ namespace ProgramStarter.ViewModels
             }
 
             //Then we need to refresh the ListView
+            RefreshProgramsToStartListView();
+            
+        }
+        #endregion
+
+        #region Refresh of ProgramsToStartListView
+        public void RefreshProgramsToStartListView()
+        {
             //
             //TODO: This is a temporary solution, need to figure out how to refresh ListView without clearing whole list
             ObservableCollection<ProgramToStart> _temp = new ObservableCollection<ProgramToStart>();
@@ -325,7 +337,7 @@ namespace ProgramStarter.ViewModels
                 insert.StartingOrder = item.StartingOrder;
                 ProgramsToStartList.Add(insert);
             }
-            
         }
+        #endregion
     }
 }
