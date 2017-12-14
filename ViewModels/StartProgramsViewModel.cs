@@ -139,6 +139,7 @@ namespace ProgramStarter.ViewModels
         #endregion ProgramsToStartGridVisibility
 
         #region SelectedProgramOnProgramsToStartListView
+        //SelectedProgramOnProgramsToStartListView property is checking which item is selected on ProgramsToStartListView
         ProgramToStart _selectedProgramOnProgramsToStartListView;
 
         public ProgramToStart SelectedProgramOnProgramsToStartListView
@@ -215,7 +216,7 @@ namespace ProgramStarter.ViewModels
 
         private void RemoveProgramContextMenuItemClicked(object obj)
         {
-            throw new NotImplementedException();
+            ProgramsToStartList.Remove(SelectedProgramOnProgramsToStartListView);
         }
 
         private void ProgramsToStartButtonClicked(object obj)
