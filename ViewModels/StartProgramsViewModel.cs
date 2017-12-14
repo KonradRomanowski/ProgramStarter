@@ -29,6 +29,8 @@ namespace ProgramStarter.ViewModels
         public ICommand DontStartButtonCommand { get; private set; }
         public ICommand OptionsButtonCommand { get; private set; }
         public ICommand ProgramsToStartButtonCommand { get; private set; }
+        public ICommand RemoveProgramFromProgramsToStartList { get; private set; }
+        public ICommand AddProgramToProgramsToStartList { get; private set; }
         #endregion ButtonCommands
 
         #region Seconds_To_Start
@@ -136,6 +138,23 @@ namespace ProgramStarter.ViewModels
         }
         #endregion ProgramsToStartGridVisibility
 
+        #region SelectedProgramOnProgramsToStartListView
+        ProgramToStart _selectedProgramOnProgramsToStartListView;
+
+        public ProgramToStart SelectedProgramOnProgramsToStartListView
+        {
+            get { return _selectedProgramOnProgramsToStartListView; }
+            set
+            {
+                if (value != _selectedProgramOnProgramsToStartListView)
+                {
+                    _selectedProgramOnProgramsToStartListView = value;
+                    this.OnPropertyChanged("SelectedProgramOnProgramsToStartListView");
+                }
+            }
+        }
+        #endregion SelectedProgramOnProgramsToStartListView
+
         #endregion Variables Definition
 
 
@@ -163,6 +182,8 @@ namespace ProgramStarter.ViewModels
             DontStartButtonCommand = new RelayCommand(DontStartButtonClicked);
             OptionsButtonCommand = new RelayCommand(OptionsButtonClicked);
             ProgramsToStartButtonCommand = new RelayCommand(ProgramsToStartButtonClicked);
+            RemoveProgramFromProgramsToStartList = new RelayCommand(RemoveProgramContextMenuItemClicked);
+            AddProgramToProgramsToStartList = new RelayCommand(AddProgramContextMenuItemClicked);
 
         }
 
@@ -185,6 +206,16 @@ namespace ProgramStarter.ViewModels
                 }
 
             }
+        }
+
+        private void AddProgramContextMenuItemClicked(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RemoveProgramContextMenuItemClicked(object obj)
+        {
+            throw new NotImplementedException();
         }
 
         private void ProgramsToStartButtonClicked(object obj)

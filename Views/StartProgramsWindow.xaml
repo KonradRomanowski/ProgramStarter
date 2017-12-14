@@ -120,6 +120,7 @@
 
                 <ListView Grid.Column="0" Grid.Row="1" Name="ProgramsToStartListView" Height="100" Margin="10" ItemsSource="{Binding ProgramsToStartList}" 
                           dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True" dd:DragDrop.DropHandler="{Binding}" 
+                          SelectedItem="{Binding SelectedProgramOnProgramsToStartListView}"
                           ToolTip="Right click to Add/Delete items">
                     <ListView.View>
                         <GridView>
@@ -130,12 +131,12 @@
                     </ListView.View>
 
                     <ListView.ContextMenu>
-                        <ContextMenu Name="ProgramsToStartListViewContextMenu" StaysOpen="true" Background="WhiteSmoke" >
+                        <ContextMenu Name="ProgramsToStartListViewContextMenu" StaysOpen="true" Background="WhiteSmoke">
                             <ContextMenu.BitmapEffect>
                                 <BitmapEffectGroup/>
                             </ContextMenu.BitmapEffect>
-                            <MenuItem Header="Add" Name="AddProgramContextMenu" />
-                            <MenuItem Header="Remove" Name="RemoveProgramContextMenu" />
+                            <MenuItem Header="Add" Name="AddProgramContextMenu" Command="{Binding AddProgramToProgramsToStartList}"/>
+                            <MenuItem Header="Remove" Name="RemoveProgramContextMenu" Command="{Binding RemoveProgramFromProgramsToStartList}"/>
                         </ContextMenu>
                     </ListView.ContextMenu>
 
