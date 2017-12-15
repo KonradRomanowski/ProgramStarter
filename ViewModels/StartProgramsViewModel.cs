@@ -1,4 +1,5 @@
 ﻿using GongSolutions.Wpf.DragDrop;
+using Microsoft.Win32;
 using ProgramStarter.Helpers;
 using ProgramStarter.Models;
 using System;
@@ -188,6 +189,7 @@ namespace ProgramStarter.ViewModels
 
         }
 
+        #region ProgramsToStartList_CollectionChanged
         private void ProgramsToStartList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             if (e.OldItems != null)
@@ -208,10 +210,23 @@ namespace ProgramStarter.ViewModels
 
             }
         }
+        #endregion
+
+        #region Add/Remove ProgramsToStart ContextMenu Buttons
 
         private void AddProgramContextMenuItemClicked(object obj)
         {
-            throw new NotImplementedException();
+            //TODO: This is breaking the MVVM concept, need to figure out how to this in MVVM style            
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                ProgramToStart program = new ProgramToStart(openFileDialog.SafeFileName, openFileDialog.FileName);
+                ProgramsToStartList.Insert(SelectedProgramOnProgramsToStartListView.StartingOrder - 1, program);
+                UpdateStartingOrdersInProgramsToStartListView();
+                RefreshProgramsToStartListView();
+            }
+            
         }
 
         private void RemoveProgramContextMenuItemClicked(object obj)
@@ -220,6 +235,8 @@ namespace ProgramStarter.ViewModels
             UpdateStartingOrdersInProgramsToStartListView();
             RefreshProgramsToStartListView();
         }
+
+        #endregion
 
         #region ProgramsToStart and Options buttons clicked events
         private void ProgramsToStartButtonClicked(object obj)
