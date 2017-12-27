@@ -105,7 +105,34 @@ namespace ProgramStarter.Helpers
             return programsList;
         }
 
+        public void SaveProgramsToStartList()
+        {
+            XmlDocument doc = new XmlDocument();
+            
+            if (File.Exists(XMLPath))
+            {
+                doc.Load(XMLPath);
 
+                XmlNodeList programsToStartNodes = doc.DocumentElement.SelectNodes("/ProgramStarter/ProgramsToStart/Program");
+
+                //clear whole list
+                for (int i = programsToStartNodes.Count - 1; i >= 0; i--)
+                {
+                    programsToStartNodes[i].ParentNode.RemoveChild(programsToStartNodes[i]);
+                }
+
+                //create a new one
+                //XmlAttribute StartingOrderAttribute = programNode.Attributes["order"];
+
+                //save the file
+                doc.Save(XMLPath);
+
+            }
+            else
+            {
+                throw new Exception("XML file not found at path: " + XMLPath);
+            }
+        }
 
     }
 }
