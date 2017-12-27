@@ -23,8 +23,10 @@ namespace ProgramStarter.ViewModels
 
         #region Variables Definition
 
-        public ObservableCollection<ProgramToStart> ProgramsToStartList { get; set; }   
-    
+        public ObservableCollection<ProgramToStart> ProgramsToStartList { get; set; }
+
+        XMLHandler configurationFile = new XMLHandler(@"D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\Data\configuration.xml");
+
         #region ButtonCommands
         public ICommand StartNowButtonCommand { get; private set; }
         public ICommand DontStartButtonCommand { get; private set; }
@@ -32,6 +34,7 @@ namespace ProgramStarter.ViewModels
         public ICommand ProgramsToStartButtonCommand { get; private set; }
         public ICommand RemoveProgramFromProgramsToStartList { get; private set; }
         public ICommand AddProgramToProgramsToStartList { get; private set; }
+        public ICommand SaveButtonCommand { get; private set; }
         #endregion ButtonCommands
 
         #region Seconds_To_Start
@@ -169,15 +172,9 @@ namespace ProgramStarter.ViewModels
             ProgramsToStartButtonContent = "Programs to Start >>>";
 
             //just for tests - can be deleted  - using of XMLHandler to read Programs to start from xml          
-            XMLHandler test = new XMLHandler(@"D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\Data\configuration.xml");
-            ProgramsToStartList = test.ReadProgramsToStartCollection();
-            //ProgramsToStartList.CollectionChanged += ProgramsToStartList_CollectionChanged;            
-
-            //foreach (var item in ttt)
-            //{
-            //    MessageBoxResult result = MessageBox.Show(item.StartingOrder.ToString() + ' ' + item.ProgramName + ' ' + item.Path);
-            //}
-            //------
+            //XMLHandler configurationFile = new XMLHandler(@"D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\Data\configuration.xml");
+            ProgramsToStartList = configurationFile.ReadProgramsToStartCollection();
+            
 
             //Binding for buttons
             StartNowButtonCommand = new RelayCommand(StartNowButtonClicked);
@@ -186,8 +183,18 @@ namespace ProgramStarter.ViewModels
             ProgramsToStartButtonCommand = new RelayCommand(ProgramsToStartButtonClicked);
             RemoveProgramFromProgramsToStartList = new RelayCommand(RemoveProgramContextMenuItemClicked);
             AddProgramToProgramsToStartList = new RelayCommand(AddProgramContextMenuItemClicked);
+            SaveButtonCommand = new RelayCommand(SaveButtonClicked);
 
         }
+
+        #region SaveButtonClickedEvent
+
+        private void SaveButtonClicked(object obj)
+        {
+            configurationFile.SaveProgramsToStartList();
+        }
+
+        #endregion
 
         #region ProgramsToStartList_CollectionChanged
         private void ProgramsToStartList_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
