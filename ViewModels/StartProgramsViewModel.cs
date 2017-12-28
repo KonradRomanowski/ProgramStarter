@@ -229,7 +229,18 @@ namespace ProgramStarter.ViewModels
             if (openFileDialog.ShowDialog() == true)
             {
                 ProgramToStart program = new ProgramToStart(openFileDialog.SafeFileName, openFileDialog.FileName);
-                ProgramsToStartList.Insert(SelectedProgramOnProgramsToStartListView.StartingOrder - 1, program);
+
+                //check if user clicked on program or on some empty field in ListView
+                //if user clicked on program then insert new program before the selected item
+                if (SelectedProgramOnProgramsToStartListView != null)
+                {
+                    ProgramsToStartList.Insert(SelectedProgramOnProgramsToStartListView.StartingOrder - 1, program);
+                }
+                else //if user clicked on some empty field then add new program at the end of the list
+                {
+                    ProgramsToStartList.Add(program);
+                }
+                
                 UpdateStartingOrdersInProgramsToStartListView();
                 RefreshProgramsToStartListView();
             }
