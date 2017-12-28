@@ -191,7 +191,7 @@ namespace ProgramStarter.ViewModels
 
         private void SaveButtonClicked(object obj)
         {
-            configurationFile.SaveProgramsToStartList();
+            configurationFile.SaveProgramsToStartList(ProgramsToStartList);
         }
 
         #endregion
