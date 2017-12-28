@@ -105,7 +105,11 @@ namespace ProgramStarter.Helpers
             return programsList;
         }
 
-        public void SaveProgramsToStartList()
+        /// <summary>
+        /// This method is saving ProgramsToStartList into the XMLFile
+        /// </summary>
+        /// <param name="newList">List of ProgramToStart which you want to save into xml</param>
+        public void SaveProgramsToStartList(ObservableCollection<ProgramToStart> newList)
         {
             XmlDocument doc = new XmlDocument();
             
@@ -122,7 +126,15 @@ namespace ProgramStarter.Helpers
                 }
 
                 //create a new one
-                //XmlAttribute StartingOrderAttribute = programNode.Attributes["order"];
+                foreach (ProgramToStart item in newList)
+                {
+                    XmlElement childElement = doc.CreateElement("Program");
+                    childElement.SetAttribute("order", item.StartingOrder.ToString());
+                    childElement.SetAttribute("name", item.ProgramName);
+                    childElement.SetAttribute("path", item.Path);
+                    XmlNode parentNode = doc.DocumentElement.SelectSingleNode("/ProgramStarter/ProgramsToStart");
+                    parentNode.InsertAfter(childElement, parentNode.LastChild);
+                }                
 
                 //save the file
                 doc.Save(XMLPath);
