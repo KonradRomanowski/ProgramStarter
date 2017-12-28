@@ -19,6 +19,11 @@ namespace ProgramStarter.Helpers
             XMLPath = _xmlPath;
         }
 
+        #region ReadProgramsToStartNamesList
+        /// <summary>
+        /// This method is reading all program names from xml file and returns them as List
+        /// </summary>
+        /// <returns></returns>
         public List<string> ReadProgramsToStartNamesList()
         {
             List<string> programsList = new List<string>();
@@ -44,7 +49,13 @@ namespace ProgramStarter.Helpers
             return programsList;
 
         }
+        #endregion
 
+        #region ReadProgramsToStartList
+        /// <summary>
+        /// This method is reading all programs from xml file and returns them as List
+        /// </summary>
+        /// <returns></returns>
         public List<ProgramToStart> ReadProgramsToStartList()
         {
             List<ProgramToStart> programsList = new List<ProgramToStart>();
@@ -74,7 +85,13 @@ namespace ProgramStarter.Helpers
 
             return programsList;
         }
+        #endregion
 
+        #region ReadProgramsToStartCollection
+        /// <summary>
+        /// This method is reading all programs from xml file and return them as ObservableCollection
+        /// </summary>
+        /// <returns></returns>
         public ObservableCollection<ProgramToStart> ReadProgramsToStartCollection()
         {
             ObservableCollection<ProgramToStart> programsList = new ObservableCollection<ProgramToStart>();
@@ -104,7 +121,9 @@ namespace ProgramStarter.Helpers
 
             return programsList;
         }
+        #endregion
 
+        #region SaveProgramsToStartList
         /// <summary>
         /// This method is saving ProgramsToStartList into the XMLFile
         /// </summary>
@@ -145,6 +164,6 @@ namespace ProgramStarter.Helpers
                 throw new Exception("XML file not found at path: " + XMLPath);
             }
         }
-
+        #endregion
     }
 }
