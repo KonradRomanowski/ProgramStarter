@@ -12,12 +12,24 @@ namespace ProgramStarter.Helpers
 {
     public class XMLHandler
     {
-        public string XMLPath { get; set; }
+        public string XMLPath { get; private set; }
 
         public XMLHandler(string _xmlPath)
         {
             XMLPath = _xmlPath;
         }
+
+        #region ObtainXMLPath
+        /// <summary>
+        /// This method is obtaining XMLPath for XMLHandler - must be used before all other methods
+        /// </summary>
+        public void ObtainXMLPath()
+        {
+            //@D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\Data\configuration.xml
+
+
+        }
+        #endregion
 
         #region ReadProgramsToStartNamesList
         /// <summary>
@@ -98,6 +110,12 @@ namespace ProgramStarter.Helpers
             XmlDocument doc = new XmlDocument();
             int temp = 0;
 
+            //if XMLPath is null throw exception
+            if (XMLPath == null)
+            {
+                throw new Exception("XMLPath is null");
+            }
+
             if (File.Exists(XMLPath))
             {
                 doc.Load(XMLPath);
@@ -131,6 +149,12 @@ namespace ProgramStarter.Helpers
         public void SaveProgramsToStartList(ObservableCollection<ProgramToStart> newList)
         {
             XmlDocument doc = new XmlDocument();
+
+            //if XMLPath is null throw exception
+            if (XMLPath == null)
+            {
+                throw new Exception("XMLPath is null");
+            }
             
             if (File.Exists(XMLPath))
             {
@@ -160,7 +184,7 @@ namespace ProgramStarter.Helpers
 
             }
             else
-            {
+            {               
                 throw new Exception("XML file not found at path: " + XMLPath);
             }
         }
