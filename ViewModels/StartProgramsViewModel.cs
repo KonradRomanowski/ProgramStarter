@@ -176,7 +176,7 @@ namespace ProgramStarter.ViewModels
             ProgramsToStartButtonContent = "Programs to Start >>>";
 
             //Read all saved Programs from configuration file and assign them to ProgramsToStartList   
-            ProgramsToStartList = configurationFile.ReadProgramsToStartCollection();
+            ReadingProgramsToStartCollection();
             
 
             //Binding for buttons
@@ -406,10 +406,28 @@ namespace ProgramStarter.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occured: " + ex, "ProgramStarter error");               
+                MessageBox.Show("An error occured while SavingConfigurationFile - Saving Programs: " + ex, "ProgramStarter error");               
             }
             
         }
+        #endregion
+
+        #region ReadingProgramsToStartCollection
+        /// <summary>
+        /// This method is for reading ProgramsToStart from xml file
+        /// </summary>
+        public void ReadingProgramsToStartCollection()
+        {
+            try
+            {
+                ProgramsToStartList = configurationFile.ReadProgramsToStartCollection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured while ReadingProgramsToStartCollection: " + ex, "ProgramStarter error");
+            }            
+        }
+
         #endregion
     }
 }
