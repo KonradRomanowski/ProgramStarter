@@ -8,7 +8,8 @@
         xmlns:dd="urn:gong-wpf-dragdrop"
         mc:Ignorable="d"
         Title="Program Starter" Height="135" Width="400"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Window.DataContext>
         <ViewModel:StartProgramsViewModel/>
     </Window.DataContext>
