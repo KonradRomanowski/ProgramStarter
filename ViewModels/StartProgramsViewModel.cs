@@ -17,7 +17,11 @@ namespace ProgramStarter.ViewModels
     public class StartProgramsViewModel : BaseViewModel, IDropTarget
     {
         #region Statics Definition
-        public static int StartProgramWindowHeightBig = 305;
+        //Version number and year of release
+        public static string VersionNumber { get { return "0.0.90"; } }
+        public static string YearOfRelease { get { return "2017"; } }
+        //Small and big window size
+        public static int StartProgramWindowHeightBig = 322;
         public static int StartProgramWindowHeightSmall = 135;
         #endregion
 

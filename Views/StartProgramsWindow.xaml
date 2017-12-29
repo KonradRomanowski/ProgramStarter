@@ -145,6 +145,21 @@
                 <Button x:Name="ProgramsToStartSaveButton" Grid.Row="3" HorizontalAlignment="Right" Width="60" Content="Save" Command="{Binding SaveButtonCommand}"/>
 
             </Grid>
+            
+            <!--Grid for Version Number and Year of Release-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock HorizontalAlignment="Left" FontSize="9">
+                    <Run Text="Version: " />
+                    <Run Text="{Binding Source={x:Static ViewModel:StartProgramsViewModel.VersionNumber}, Mode=OneTime}" />
+                    <Run Text=" " />
+                    <Run Text="{Binding Source={x:Static ViewModel:StartProgramsViewModel.YearOfRelease}, Mode=OneTime}" />
+                    <Run Text=" KR" />
+                </TextBlock>
+            </Grid>
 
         </StackPanel>      
         
