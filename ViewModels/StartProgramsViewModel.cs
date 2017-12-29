@@ -175,8 +175,7 @@ namespace ProgramStarter.ViewModels
             ProgramsToStartGridVisibility = Visibility.Collapsed;
             ProgramsToStartButtonContent = "Programs to Start >>>";
 
-            //just for tests - can be deleted  - using of XMLHandler to read Programs to start from xml          
-            //XMLHandler configurationFile = new XMLHandler(@"D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\Data\configuration.xml");
+            //Read all saved Programs from configuration file and assign them to ProgramsToStartList   
             ProgramsToStartList = configurationFile.ReadProgramsToStartCollection();
             
 
@@ -195,7 +194,7 @@ namespace ProgramStarter.ViewModels
 
         private void SaveButtonClicked(object obj)
         {
-            configurationFile.SaveProgramsToStartList(ProgramsToStartList);
+            SavingConfigurationFile();
         }
 
         #endregion
@@ -391,6 +390,25 @@ namespace ProgramStarter.ViewModels
                 insert.StartingOrder = item.StartingOrder;
                 ProgramsToStartList.Add(insert);
             }
+        }
+        #endregion
+
+        #region SavingConfigurationFile
+        /// <summary>
+        /// Method for saving configuration.xml file
+        /// </summary>
+        public void SavingConfigurationFile()
+        {
+            //Saving Programs 
+            try
+            {
+                configurationFile.SaveProgramsToStartList(ProgramsToStartList);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured: " + ex, "ProgramStarter error");               
+            }
+            
         }
         #endregion
     }
