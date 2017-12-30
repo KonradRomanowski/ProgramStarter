@@ -29,7 +29,7 @@ namespace ProgramStarter.ViewModels
 
         public ObservableCollection<ProgramToStart> ProgramsToStartList { get; set; }
 
-        XMLHandler configurationFile = new XMLHandler(@"D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\Data\configuration.xml");
+        XMLHandler configurationFile = new XMLHandler();
 
         #region ButtonCommands
         public ICommand StartNowButtonCommand { get; private set; }
@@ -175,7 +175,10 @@ namespace ProgramStarter.ViewModels
             ProgramsToStartGridVisibility = Visibility.Collapsed;
             ProgramsToStartButtonContent = "Programs to Start >>>";
 
-            //Read all saved Programs from configuration file and assign them to ProgramsToStartList   
+            //Obtain configuration.xml path
+            configurationFile.ObtainXMLPath();
+
+            //Read all saved Programs from configuration file and assign them to ProgramsToStartList               
             ReadingProgramsToStartCollection();
             
 
