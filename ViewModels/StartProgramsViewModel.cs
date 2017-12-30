@@ -176,7 +176,7 @@ namespace ProgramStarter.ViewModels
             ProgramsToStartButtonContent = "Programs to Start >>>";
 
             //Obtain configuration.xml path
-            configurationFile.ObtainXMLPath();
+            ObtainingConfigurationXMLPath();
 
             //Read all saved Programs from configuration file and assign them to ProgramsToStartList               
             ReadingProgramsToStartCollection();
@@ -431,6 +431,23 @@ namespace ProgramStarter.ViewModels
             }            
         }
 
+        #endregion
+
+        #region ObtainingConfigurationXMLPath
+        /// <summary>
+        /// This method is calling ObtainXMLPath from XMLHandler and catching exceptions
+        /// </summary>
+        public void ObtainingConfigurationXMLPath()
+        {
+            try
+            {
+                configurationFile.ObtainXMLPath();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured while ObtainingConfigurationXMLPath: " + ex, "ProgramStarter error");
+            }            
+        }
         #endregion
     }
 }
