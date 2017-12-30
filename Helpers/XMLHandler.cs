@@ -14,9 +14,9 @@ namespace ProgramStarter.Helpers
     {
         public string XMLPath { get; private set; }
 
-        public XMLHandler(string _xmlPath)
+        public XMLHandler()
         {
-            XMLPath = _xmlPath;
+            
         }
 
         #region ObtainXMLPath
@@ -25,8 +25,19 @@ namespace ProgramStarter.Helpers
         /// </summary>
         public void ObtainXMLPath()
         {
-            //@D:\Programy Programowanie\Moje\ProgramStarter\csharp\ProgramStarter\ProgramStarter\Data\configuration.xml
+            //if 'try catch' fails then XMLPath will be null
+            XMLPath = null;
 
+            try
+            {
+                XMLPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
+                XMLPath = Path.Combine(XMLPath, "Data\\configuration.xml");
+                XMLPath = new Uri(XMLPath).LocalPath;  //this will cut 'file:///' at the beginning of path from .CodeBase method
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Unexpected exception with XMLPath (XMLPath set to null): " + ex.ToString());
+            }           
 
         }
         #endregion
