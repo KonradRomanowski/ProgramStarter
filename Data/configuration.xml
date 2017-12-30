@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ProgramStarter>
   <ProgramSettings>
     <Setting name="StartingLanguage" value="PL" />
     <Setting name="AutoStart" value="false" />
+    <Setting name="SecondsToStartPrograms" value="5" />
+    <Setting name="GapBetweenStartingPrograms" value="1" />
   </ProgramSettings>
   <ProgramsToStart>
     <Program order="1" name="test1" path="D:/test1/" />
