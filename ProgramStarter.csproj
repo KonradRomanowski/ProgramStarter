@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\XMLHandler.cs" />
+    <Compile Include="Models\Option.cs" />
     <Compile Include="Models\ProgramToStart.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\StartProgramsViewModel.cs" />
