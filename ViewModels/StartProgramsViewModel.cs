@@ -31,6 +31,8 @@ namespace ProgramStarter.ViewModels
 
         XMLHandler configurationFile = new XMLHandler();
 
+        List<Option> optionsList = new List<Option>();
+
         #region ButtonCommands
         public ICommand StartNowButtonCommand { get; private set; }
         public ICommand DontStartButtonCommand { get; private set; }
@@ -180,6 +182,8 @@ namespace ProgramStarter.ViewModels
 
             //Read all saved Programs from configuration file and assign them to ProgramsToStartList               
             ReadingProgramsToStartCollection();
+
+            optionsList = configurationFile.ReadOptionsFromConfigurationXML();
             
 
             //Binding for buttons
