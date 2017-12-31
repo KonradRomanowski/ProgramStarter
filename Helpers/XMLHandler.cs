@@ -135,12 +135,19 @@ namespace ProgramStarter.Helpers
 
                 foreach (XmlNode programNode in programsToStartNodes)
                 {
-                    ProgramToStart _program = new ProgramToStart(programNode.Attributes["name"].Value, programNode.Attributes["path"].Value);
-                    if (int.TryParse(programNode.Attributes["order"].Value, out temp))
-                        _program.StartingOrder = int.Parse(programNode.Attributes["order"].Value);
+                    if (programNode.Attributes["name"] != null && programNode.Attributes["path"] != null && programNode.Attributes["order"] != null)
+                    {
+                        ProgramToStart _program = new ProgramToStart(programNode.Attributes["name"].Value, programNode.Attributes["path"].Value);
+                        if (int.TryParse(programNode.Attributes["order"].Value, out temp))
+                            _program.StartingOrder = int.Parse(programNode.Attributes["order"].Value);
+                        else
+                            throw new Exception("Starting Order could not be parsed into int for: " + _program.ProgramName);
+                        programsList.Add(_program);
+                    }
                     else
-                        throw new Exception("Starting Order could not be parsed into int for: " + _program.ProgramName);
-                    programsList.Add(_program);
+                    {
+                        throw new Exception("One of Program To Start in configuration.xml doesn't have name, path or order (Null Exception)");
+                    }                    
                 }
             }
             else
@@ -198,6 +205,50 @@ namespace ProgramStarter.Helpers
             {               
                 throw new Exception("XML file not found at path: " + XMLPath);
             }
+        }
+        #endregion
+        
+        #region ReadOptionsFromConfigurationXML
+        /// <summary>
+        /// This method is reading all options from configuration.xml file and returns them as a List of type Option
+        /// </summary>
+        /// <returns></returns>
+        public List<Option> ReadOptionsFromConfigurationXML()
+        {
+            List<Option> readedOptions = new List<Option>();
+            XmlDocument doc = new XmlDocument();
+
+            //if XMLPath is null throw exception
+            if (XMLPath == null)
+            {
+                throw new Exception("XMLPath is null");
+            }
+
+            if (File.Exists(XMLPath))
+            {
+                doc.Load(XMLPath);
+
+                XmlNodeList optionsNodes = doc.DocumentElement.SelectNodes("/ProgramStarter/ProgramSettings/Setting");
+
+                foreach (XmlNode option in optionsNodes)
+                {
+                    if (option.Attributes["name"] != null && option.Attributes["value"] != null)
+                    {
+                        Option _option = new Option(option.Attributes["name"].Value, option.Attributes["value"].Value);
+                        readedOptions.Add(_option);
+                    }
+                    else
+                    {
+                        throw new Exception("One of Program Settings in configuration.xml doesn't have name or value (Null Exception)");
+                    }                    
+                }
+            }
+            else
+            {
+                throw new Exception("XML file not found at path: " + XMLPath);
+            }
+
+            return readedOptions;
         }
         #endregion
     }
