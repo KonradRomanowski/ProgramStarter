@@ -183,7 +183,8 @@ namespace ProgramStarter.ViewModels
             //Read all saved Programs from configuration file and assign them to ProgramsToStartList               
             ReadingProgramsToStartCollection();
 
-            optionsList = configurationFile.ReadOptionsFromConfigurationXML();
+            //Read all options from configuration file and assign them to proper variables
+            ReadingOptionsToVariables();
             
 
             //Binding for buttons
@@ -413,7 +414,7 @@ namespace ProgramStarter.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occured while SavingConfigurationFile - Saving Programs: " + ex, "ProgramStarter error");               
+                MessageBox.Show("An error occured while trying method SavingConfigurationFile - Saving Programs: " + ex, "ProgramStarter error");               
             }
             
         }
@@ -431,7 +432,7 @@ namespace ProgramStarter.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occured while ReadingProgramsToStartCollection: " + ex, "ProgramStarter error");
+                MessageBox.Show("An error occured while trying method ReadingProgramsToStartCollection: " + ex, "ProgramStarter error");
             }            
         }
 
@@ -449,8 +450,31 @@ namespace ProgramStarter.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occured while ObtainingConfigurationXMLPath: " + ex, "ProgramStarter error");
+                MessageBox.Show("An error occured while trying method ObtainingConfigurationXMLPath: " + ex, "ProgramStarter error");
             }            
+        }
+        #endregion
+
+        #region ReadingOptionsToVariables
+        /// <summary>
+        /// This method is assigning options readed from XMLFile to proper variables
+        /// </summary>
+        public void ReadingOptionsToVariables()
+        {
+            //First read all options from configuration file
+            try
+            {
+                optionsList = configurationFile.ReadOptionsFromConfigurationXML();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured while trying method ReadingOptionsToVariables: " + ex, "ProgramStarter error");
+            }
+
+            //Then try to assign readed options to proper variables (if not readed assign default value)
+
+
+            
         }
         #endregion
     }
