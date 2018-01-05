@@ -64,6 +64,27 @@ namespace ProgramStarter.ViewModels
         }
         #endregion Seconds_To_Start
 
+        #region Gap_Between_Programs
+        private string mGap_Between_Programs;
+
+        public string Gap_Between_Programs
+        {
+            get
+            {
+                return mGap_Between_Programs;
+            }
+
+            set
+            {
+                if (mGap_Between_Programs == value)
+                    return;
+
+                mGap_Between_Programs = value;
+                OnPropertyChanged(nameof(Gap_Between_Programs));
+            }
+        }
+        #endregion Gap_Between_Programs
+
         #region OptionsButtonContent
         private string mOptionsButtonContent;
 
@@ -468,13 +489,35 @@ namespace ProgramStarter.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occured while trying method ReadingOptionsToVariables: " + ex, "ProgramStarter error");
+                MessageBox.Show("An error occured while trying method ReadingOptionsToVariables(Reading options from configuration file): " + ex, "ProgramStarter error");
             }
 
             //Then try to assign readed options to proper variables (if not readed assign default value)
 
+            //Seconds_To_Start
+            try
+            {
+                Seconds_To_Start = optionsList.Where(x => x.OptionName == "SecondsToStartPrograms").Select(x => x.OptionValue).First();
+            }
+            catch (Exception ex)
+            {
+                //Assign default value
+                Seconds_To_Start = "5";
+                MessageBox.Show("An error occured while trying method ReadingOptionsToVariables(Assigning readed options to variable Seconds_To_Start, used default value 5): " + ex, "ProgramStarter error");
+            }
 
-            
+            //Gap_Between_Programs
+            try
+            {
+                Gap_Between_Programs = optionsList.Where(x => x.OptionName == "GapBetweenStartingPrograms").Select(x => x.OptionValue).First();
+            }
+            catch (Exception ex)
+            {
+                //Assign default value
+                Gap_Between_Programs = "1";
+                MessageBox.Show("An error occured while trying method ReadingOptionsToVariables(Assigning readed options to variable Gap_Between_Programs, used default value 1): " + ex, "ProgramStarter error");
+            }
+
         }
         #endregion
     }
