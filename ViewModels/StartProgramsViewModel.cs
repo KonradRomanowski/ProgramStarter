@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -232,7 +233,7 @@ namespace ProgramStarter.ViewModels
             ReadingProgramsToStartCollection();
 
             //Read all options from configuration file and assign them to proper variables
-            ReadingOptionsToVariables();
+            ReadingOptionsToVariables();            
             
 
             //Binding for buttons
@@ -546,9 +547,23 @@ namespace ProgramStarter.ViewModels
             {
                 //Assign default value
                 Gap_Between_Programs = Gap_Between_Programs_default;
-                MessageBox.Show("An error occured while trying method ReadingOptionsToVariables(Assigning readed options to variable Gap_Between_Programs, used default value 1): " + ex, "ProgramStarter error");
+                MessageBox.Show("An error occured while trying method ReadingOptionsToVariables(Assigning readed options to variable Gap_Between_Programs, used default value): " + ex, "ProgramStarter error");
             }
 
+            //Auto_Start_Value
+            try
+            {
+                //check if shortcut exists in startup folder
+                string startUpFolder = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
+                string shortcutPath = startUpFolder + @"\ProgramStarter.lnk";
+
+                Auto_Start_Value = (File.Exists(shortcutPath)) ? true : false;                
+            }
+            catch (Exception ex)
+            {
+                Auto_Start_Value = Auto_Start_Value_default;
+                MessageBox.Show("An error occured while trying method ReadingOptionsToVariables(Assigning readed options to variable Auto_Start_Value, used default value): " + ex, "ProgramStarter error");
+            }
         }
         #endregion        
     }
