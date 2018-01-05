@@ -89,6 +89,29 @@ namespace ProgramStarter.ViewModels
         }
         #endregion Gap_Between_Programs
 
+        #region Auto_Start_Value
+        private bool Auto_Start_Value_default = false;
+
+        private bool mAuto_Start_Value;
+
+        public bool Auto_Start_Value
+        {
+            get
+            {
+                return mAuto_Start_Value;
+            }
+
+            set
+            {
+                if (mAuto_Start_Value == value)
+                    return;
+
+                mAuto_Start_Value = value;
+                OnPropertyChanged(nameof(Auto_Start_Value));
+            }
+        }
+        #endregion Auto_Start_Value
+
         #region OptionsButtonContent
         private string mOptionsButtonContent;
 
