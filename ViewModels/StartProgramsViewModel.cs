@@ -44,6 +44,8 @@ namespace ProgramStarter.ViewModels
         #endregion ButtonCommands
 
         #region Seconds_To_Start
+        private string Seconds_To_Start_default = "5";
+
         private string mSeconds_To_Start;
 
         public string Seconds_To_Start
@@ -65,6 +67,8 @@ namespace ProgramStarter.ViewModels
         #endregion Seconds_To_Start
 
         #region Gap_Between_Programs
+        private string Gap_Between_Programs_default = "1";
+
         private string mGap_Between_Programs;
 
         public string Gap_Between_Programs
@@ -497,13 +501,13 @@ namespace ProgramStarter.ViewModels
             //Seconds_To_Start
             try
             {
-                Seconds_To_Start = optionsList.Where(x => x.OptionName == "SecondsToStartPrograms").Select(x => x.OptionValue).First();
+                Seconds_To_Start = optionsList.Where(x => x.OptionName == "SecondsToStartPrograms").Select(x => x.OptionValue).First();                
             }
             catch (Exception ex)
             {
                 //Assign default value
-                Seconds_To_Start = "5";
-                MessageBox.Show("An error occured while trying method ReadingOptionsToVariables(Assigning readed options to variable Seconds_To_Start, used default value 5): " + ex, "ProgramStarter error");
+                Seconds_To_Start = Seconds_To_Start_default;
+                MessageBox.Show("An error occured while trying method ReadingOptionsToVariables(Assigning readed options to variable Seconds_To_Start, used default value): " + ex, "ProgramStarter error");
             }
 
             //Gap_Between_Programs
@@ -514,11 +518,11 @@ namespace ProgramStarter.ViewModels
             catch (Exception ex)
             {
                 //Assign default value
-                Gap_Between_Programs = "1";
+                Gap_Between_Programs = Gap_Between_Programs_default;
                 MessageBox.Show("An error occured while trying method ReadingOptionsToVariables(Assigning readed options to variable Gap_Between_Programs, used default value 1): " + ex, "ProgramStarter error");
             }
 
         }
-        #endregion
+        #endregion        
     }
 }
