@@ -501,7 +501,9 @@ namespace ProgramStarter.ViewModels
             //Seconds_To_Start
             try
             {
-                Seconds_To_Start = optionsList.Where(x => x.OptionName == "SecondsToStartPrograms").Select(x => x.OptionValue).First();                
+                Seconds_To_Start = (optionsList.Where(x => x.OptionName == "SecondsToStartPrograms").Count() > 0) ?
+                    optionsList.Where(x => x.OptionName == "SecondsToStartPrograms").Select(x => x.OptionValue).First()
+                    : Seconds_To_Start_default;                
             }
             catch (Exception ex)
             {
@@ -513,7 +515,9 @@ namespace ProgramStarter.ViewModels
             //Gap_Between_Programs
             try
             {
-                Gap_Between_Programs = optionsList.Where(x => x.OptionName == "GapBetweenStartingPrograms").Select(x => x.OptionValue).First();
+                Gap_Between_Programs = (optionsList.Where(x => x.OptionName == "GapBetweenStartingPrograms").Count() > 0) ?
+                    optionsList.Where(x => x.OptionName == "GapBetweenStartingPrograms").Select(x => x.OptionValue).First()
+                    : Gap_Between_Programs_default;
             }
             catch (Exception ex)
             {
