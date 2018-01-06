@@ -251,5 +251,53 @@ namespace ProgramStarter.Helpers
             return readedOptions;
         }
         #endregion
+
+        #region SaveOptionsListToXML
+        /// <summary>
+        /// This method will save new options list into XML file
+        /// </summary>
+        /// <param name="newOptionsList">List of type Option with new user settings to save</param>
+        public void SaveOptionsListToXML(List<Option> newOptionsList)
+        {
+            XmlDocument doc = new XmlDocument();
+
+            //if XMLPath is null throw exception
+            if (XMLPath == null)
+            {
+                throw new Exception("XMLPath is null");
+            }
+
+            if (File.Exists(XMLPath))
+            {
+                doc.Load(XMLPath);
+
+                XmlNodeList optionsNodes = doc.DocumentElement.SelectNodes("/ProgramStarter/ProgramsToStart/ProgramSettings");
+
+                //clear whole list
+                for (int i = optionsNodes.Count - 1; i >= 0; i--)
+                {
+                    optionsNodes[i].ParentNode.RemoveChild(optionsNodes[i]);
+                }
+
+                //create a new one
+                foreach (Option item in newOptionsList)
+                {
+                    XmlElement childElement = doc.CreateElement("Setting");
+                    childElement.SetAttribute("name", item.OptionName);
+                    childElement.SetAttribute("value", item.OptionValue);
+                    XmlNode parentNode = doc.DocumentElement.SelectSingleNode("/ProgramStarter/ProgramSettings");
+                    parentNode.InsertAfter(childElement, parentNode.LastChild);
+                }
+
+                //save the file
+                doc.Save(XMLPath);
+
+            }
+            else
+            {
+                throw new Exception("XML file not found at path: " + XMLPath);
+            }
+        }
+        #endregion
     }
 }
