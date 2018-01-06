@@ -106,7 +106,7 @@
                 </TextBlock>
 
 
-                <Button Grid.Row="5" Grid.Column="2" x:Name="OptionsSaveButton" Width="60" Content="Save" Margin="5"/>
+                <Button Grid.Row="5" Grid.Column="2" x:Name="OptionsSaveButton" Width="60" Content="Save" Margin="5" Command="{Binding SaveButtonCommand}"/>
 
             </Grid>
 
