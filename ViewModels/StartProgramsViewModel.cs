@@ -251,6 +251,64 @@ namespace ProgramStarter.ViewModels
 
         private void SaveButtonClicked(object obj)
         {
+            //Assign new options to optionsList
+
+            #region Seconds_To_Start
+            //Seconds_To_Start
+            if (Seconds_To_Start != null)
+            {
+                if (optionsList.Where(x => x.OptionName == "SecondsToStartPrograms").Count() > 0)
+                {
+                    //if option already exist then update value
+                    foreach (Option item in optionsList.Where(x => x.OptionName == "SecondsToStartPrograms"))
+                    {
+                        item.ChangeOptionValue(Seconds_To_Start);
+                    }
+                }
+                else
+                {
+                    //if option don't exists on the list, add a new one
+                    Option item = new Option("SecondsToStartPrograms", Seconds_To_Start);
+                    optionsList.Add(item);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Option Seconds To Start cannot be null - option not saved", "ProgramStarter error");
+            }
+            #endregion Seconds_To_Start
+
+            #region Gap_Between_Programs
+            //Gap_Between_Programs
+            if (Gap_Between_Programs != null)
+            {
+                if (optionsList.Where(x => x.OptionName == "GapBetweenStartingPrograms").Count() > 0)
+                {
+                    //if option already exist then update value
+                    foreach (Option item in optionsList.Where(x => x.OptionName == "GapBetweenStartingPrograms"))
+                    {
+                        item.ChangeOptionValue(Gap_Between_Programs);
+                    }
+                }
+                else
+                {
+                    //if option don't exists on the list, add a new one
+                    Option item = new Option("GapBetweenStartingPrograms", Gap_Between_Programs);
+                    optionsList.Add(item);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Option Gap Between Starting Programs cannot be null - option not saved", "ProgramStarter error");
+            }
+            #endregion Gap_Between_Programs
+
+            #region Auto_Start_Value
+            //TODO: adding shortcut to autostart is Auto_Start_Value is true or deleting it if is false
+            //TODO: saving the value to optionsList
+            #endregion Auto_Start_Value
+
+            //save the configuration file
             SavingConfigurationFile();
         }
 
@@ -464,6 +522,16 @@ namespace ProgramStarter.ViewModels
             catch (Exception ex)
             {
                 MessageBox.Show("An error occured while trying method SavingConfigurationFile - Saving Programs: " + ex, "ProgramStarter error");               
+            }
+
+            //Saving Options
+            try
+            {
+                configurationFile.SaveOptionsListToXML(optionsList);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured while trying method SavingConfigurationFile - Saving Options: " + ex, "ProgramStarter error");
             }
             
         }
