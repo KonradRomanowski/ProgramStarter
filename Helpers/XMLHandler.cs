@@ -271,7 +271,7 @@ namespace ProgramStarter.Helpers
             {
                 doc.Load(XMLPath);
 
-                XmlNodeList optionsNodes = doc.DocumentElement.SelectNodes("/ProgramStarter/ProgramsToStart/ProgramSettings");
+                XmlNodeList optionsNodes = doc.DocumentElement.SelectNodes("/ProgramStarter/ProgramSettings/Setting");
 
                 //clear whole list
                 for (int i = optionsNodes.Count - 1; i >= 0; i--)
@@ -282,6 +282,17 @@ namespace ProgramStarter.Helpers
                 //create a new one
                 foreach (Option item in newOptionsList)
                 {
+                    //checking if name or value is null
+                    if (item.OptionName == null)
+                    {
+                        throw new Exception("One item on list has OptionName = null");
+                    }
+                    if (item.OptionValue == null)
+                    {
+                        throw new Exception("Item: " +item.OptionName + " on list has OptionValue = null");
+                    }
+
+                    //inserting new item
                     XmlElement childElement = doc.CreateElement("Setting");
                     childElement.SetAttribute("name", item.OptionName);
                     childElement.SetAttribute("value", item.OptionValue);
