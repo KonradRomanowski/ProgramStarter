@@ -681,45 +681,48 @@ namespace ProgramStarter.ViewModels
 
             //Then try to assign readed options to proper variables (if not readed assign default value)
 
-            //Seconds_To_Start
-            try
+            if (optionsList.Any())
             {
-                Seconds_To_Start = (optionsList.Where(x => x.OptionName == "SecondsToStartPrograms").Count() > 0) ?
-                    optionsList.Where(x => x.OptionName == "SecondsToStartPrograms").Select(x => x.OptionValue).First()
-                    : Seconds_To_Start_default;                
-            }
-            catch (Exception ex)
-            {
-                //Assign default value
-                Seconds_To_Start = Seconds_To_Start_default;
-                MessageBox.Show("An error occured while trying method ReadingOptionsToVariables(Assigning readed options to variable Seconds_To_Start, used default value): " + ex, "ProgramStarter error");
-            }
+                //Seconds_To_Start
+                try
+                {
+                    Seconds_To_Start = (optionsList.Where(x => x.OptionName == "SecondsToStartPrograms").Count() > 0) ?
+                        optionsList.Where(x => x.OptionName == "SecondsToStartPrograms").Select(x => x.OptionValue).First()
+                        : Seconds_To_Start_default;
+                }
+                catch (Exception ex)
+                {
+                    //Assign default value
+                    Seconds_To_Start = Seconds_To_Start_default;
+                    MessageBox.Show("An error occured while trying method ReadingOptionsToVariables(Assigning readed options to variable Seconds_To_Start, used default value): " + ex, "ProgramStarter error");
+                }
 
-            //Gap_Between_Programs
-            try
-            {
-                Gap_Between_Programs = (optionsList.Where(x => x.OptionName == "GapBetweenStartingPrograms").Count() > 0) ?
-                    optionsList.Where(x => x.OptionName == "GapBetweenStartingPrograms").Select(x => x.OptionValue).First()
-                    : Gap_Between_Programs_default;
-            }
-            catch (Exception ex)
-            {
-                //Assign default value
-                Gap_Between_Programs = Gap_Between_Programs_default;
-                MessageBox.Show("An error occured while trying method ReadingOptionsToVariables(Assigning readed options to variable Gap_Between_Programs, used default value): " + ex, "ProgramStarter error");
-            }
+                //Gap_Between_Programs
+                try
+                {
+                    Gap_Between_Programs = (optionsList.Where(x => x.OptionName == "GapBetweenStartingPrograms").Count() > 0) ?
+                        optionsList.Where(x => x.OptionName == "GapBetweenStartingPrograms").Select(x => x.OptionValue).First()
+                        : Gap_Between_Programs_default;
+                }
+                catch (Exception ex)
+                {
+                    //Assign default value
+                    Gap_Between_Programs = Gap_Between_Programs_default;
+                    MessageBox.Show("An error occured while trying method ReadingOptionsToVariables(Assigning readed options to variable Gap_Between_Programs, used default value): " + ex, "ProgramStarter error");
+                }
 
-            //Auto_Start_Value
-            try
-            {
-                //check if shortcut exists in startup folder 
-                Auto_Start_Value = (CheckIfAutoStartShortcutExist()) ? true : false;                
-            }
-            catch (Exception ex)
-            {
-                Auto_Start_Value = Auto_Start_Value_default;
-                MessageBox.Show("An error occured while trying method ReadingOptionsToVariables(Assigning readed options to variable Auto_Start_Value, used default value): " + ex, "ProgramStarter error");
-            }
+                //Auto_Start_Value
+                try
+                {
+                    //check if shortcut exists in startup folder 
+                    Auto_Start_Value = (CheckIfAutoStartShortcutExist()) ? true : false;
+                }
+                catch (Exception ex)
+                {
+                    Auto_Start_Value = Auto_Start_Value_default;
+                    MessageBox.Show("An error occured while trying method ReadingOptionsToVariables(Assigning readed options to variable Auto_Start_Value, used default value): " + ex, "ProgramStarter error");
+                }
+            }            
         }
         #endregion        
     }
