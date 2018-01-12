@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using IWshRuntimeLibrary;
 
 namespace ProgramStarter.ViewModels
 {
@@ -308,13 +309,99 @@ namespace ProgramStarter.ViewModels
             #endregion Gap_Between_Programs
 
             #region Auto_Start_Value
-            //TODO: adding shortcut to autostart is Auto_Start_Value is true or deleting it if is false
-            //TODO: saving the value to optionsList
+            //Auto_Start_Value
+
+            //First create or delete shortcut file
+            //if Auto_Start_Value is true then if shortcut file don't exist - create it
+            if (Auto_Start_Value)
+            {
+                if (!CheckIfAutoStartShortcutExist())
+                    CreateAutoStartShortcut();                
+            }
+            else //else (Auto_Start_Value is false) then if shortcut file exist - delete it
+            {
+                if (CheckIfAutoStartShortcutExist())
+                {
+                    try
+                    {
+                        System.IO.File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + @"\ProgramStarter.lnk");
+                    }
+                    catch (Exception err)
+                    {
+                        MessageBox.Show("Error during SaveButtonClicked - delete AutoStart shortcut: " + err);
+                    }
+                }                    
+            }
+
+            //Then change option value on optionsList
+            if (Auto_Start_Value != null)
+            {
+                string _value = (Auto_Start_Value) ? "true" : "false";
+
+                if (optionsList.Where(x => x.OptionName == "AutoStart").Count() > 0)
+                {                    
+                    //if option already exist then update value
+                    foreach (Option item in optionsList.Where(x => x.OptionName == "AutoStart"))
+                    {                        
+                        item.ChangeOptionValue(_value);
+                    }
+                }
+                else
+                {                    
+                    //if option don't exists on the list, add a new one
+                    Option item = new Option("AutoStart", Gap_Between_Programs);
+                    optionsList.Add(item);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Option AutoStart cannot be null - option not saved", "ProgramStarter error");
+            }
             #endregion Auto_Start_Value
 
             //save the configuration file
             SavingConfigurationFile();
         }
+
+        #endregion
+
+        #region CreateAutoStartShortcut
+        /// <summary>
+        /// This method is creating shortcut to app in AutoStart folder
+        /// </summary>
+        private void CreateAutoStartShortcut()
+        {
+            string shortcutPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + @"\ProgramStarter.lnk";
+
+            try
+            {
+                WshShell shell = new WshShell();
+                IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutPath);
+                shortcut.Description = "ProgramStarter Shortcut";
+                shortcut.TargetPath = PathToApp + @"\ProgramStarter.exe";
+                shortcut.WorkingDirectory = PathToApp;
+                shortcut.Save();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured while trying method CreateAutoStartShortcut(): " + ex, "ProgramStarter error");               
+            }
+        }
+
+        #endregion
+
+        #region CheckIfAutoStartShortcutExist
+        /// <summary>
+        /// This method is checking if AutoStart shortcut exists or not
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckIfAutoStartShortcutExist()
+        {
+            string shortcutPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + @"\ProgramStarter.lnk";
+
+            return (System.IO.File.Exists(shortcutPath)) ? true : false;
+        }
+        
 
         #endregion
 
@@ -625,11 +712,8 @@ namespace ProgramStarter.ViewModels
             //Auto_Start_Value
             try
             {
-                //check if shortcut exists in startup folder
-                string startUpFolder = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
-                string shortcutPath = startUpFolder + @"\ProgramStarter.lnk";
-
-                Auto_Start_Value = (File.Exists(shortcutPath)) ? true : false;                
+                //check if shortcut exists in startup folder 
+                Auto_Start_Value = (CheckIfAutoStartShortcutExist()) ? true : false;                
             }
             catch (Exception ex)
             {
