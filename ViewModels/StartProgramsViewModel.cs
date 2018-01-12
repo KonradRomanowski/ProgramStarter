@@ -21,9 +21,13 @@ namespace ProgramStarter.ViewModels
         //Version number and year of release
         public static string VersionNumber { get { return "0.0.90"; } }
         public static string YearOfRelease { get { return "2017"; } }
+
         //Small and big window size
         public static int StartProgramWindowHeightBig = 322;
         public static int StartProgramWindowHeightSmall = 135;
+
+        //Paths
+        public static string PathToApp = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
         #endregion
 
         #region Variables Definition
@@ -217,7 +221,7 @@ namespace ProgramStarter.ViewModels
 
         #endregion Variables Definition
 
-
+        
         public StartProgramsViewModel()
         {            
             //Assigning startup values for controls
