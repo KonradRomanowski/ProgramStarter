@@ -160,6 +160,27 @@ namespace ProgramStarter.ViewModels
         }
         #endregion OptionsGridVisibility
 
+        #region ProgressBarVisibility
+        private Visibility mProgressBarVisibility;
+
+        public Visibility ProgressBarVisibility
+        {
+            get
+            {
+                return mProgressBarVisibility;
+            }
+
+            set
+            {
+                if (mProgressBarVisibility == value)
+                    return;
+
+                mProgressBarVisibility = value;
+                OnPropertyChanged(nameof(ProgressBarVisibility));
+            }
+        }
+        #endregion ProgressBarVisibility
+
         #region ProgramsToStartButtonContent
         private string mProgramsToStartButtonContent;
 
