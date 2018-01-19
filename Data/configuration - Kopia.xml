@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ProgramStarter>
+  <ProgramSettings>
+    <Setting name="StartingLanguage" value="PL" />
+    <Setting name="AutoStart" value="false" />
+  </ProgramSettings>
+  <ProgramsToStart>
+    <Program order="1" name="test1" path="D:/test1/" />
+    <Program order="2" name="test2" path="D:/test2/" />
+    <Program order="3" name="test3" path="D:/test3/" />
+    <Program order="4" name="test4" path="D:/test4/" />
+    <Program order="5" name="test5" path="D:/test5/" />
+  </ProgramsToStart>
+</ProgramStarter>

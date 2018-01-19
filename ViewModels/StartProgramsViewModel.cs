@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using IWshRuntimeLibrary;
+using System.Windows.Threading;
 
 namespace ProgramStarter.ViewModels
 {
@@ -38,6 +39,8 @@ namespace ProgramStarter.ViewModels
         XMLHandler configurationFile = new XMLHandler();
 
         List<Option> optionsList = new List<Option>();
+
+        DispatcherTimer TimeToStart = new DispatcherTimer();
 
         #region ButtonCommands
         public ICommand StartNowButtonCommand { get; private set; }
@@ -271,7 +274,41 @@ namespace ProgramStarter.ViewModels
             AddProgramToProgramsToStartList = new RelayCommand(AddProgramContextMenuItemClicked);
             SaveButtonCommand = new RelayCommand(SaveButtonClicked);
 
+            //Start counting seconds to start 
+            CountingSecondsToStart();            
+
         }
+
+        #region CountingSecondsToStart
+        /// <summary>
+        /// This method is couting seconds to start programs
+        /// </summary>
+        private void CountingSecondsToStart()
+        {
+            TimeToStart.Interval = TimeSpan.FromSeconds(1);
+            TimeToStart.Tick += TimeToStart_Tick;
+            TimeToStart.Start();
+        }
+
+        private void TimeToStart_Tick(object sender, EventArgs e)
+        {
+            int seconds = Int32.Parse(Seconds_To_Start);
+
+            //if seconds are still more than 0 then count down
+            if (seconds > 0)
+            {
+                seconds--;
+                Seconds_To_Start = seconds.ToString();
+            }
+
+            //when seconds will be 0 then begin starting procedure
+            if (seconds == 0)
+            {
+
+            }
+
+        }
+        #endregion
 
         #region SaveButtonClickedEvent
 
@@ -531,7 +568,7 @@ namespace ProgramStarter.ViewModels
 
         private void DontStartButtonClicked(object obj)
         {
-            throw new NotImplementedException();
+            TimeToStart.Stop();
         }
 
         private void StartNowButtonClicked(object obj)
