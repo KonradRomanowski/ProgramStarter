@@ -16,7 +16,9 @@
 
     <Border Padding="10">
         <StackPanel>
-            <Grid>             
+            <Grid>    
+                <!-- Progress Bar-->
+                <ProgressBar Minimum="0" Maximum="100" Value="75" Name="pbStatus" Visibility="Hidden"/>
 
                 <!-- Text -->
                 <TextBlock x:Name="Seconds_To_Start"  HorizontalAlignment="Center">
