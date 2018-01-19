@@ -304,8 +304,19 @@ namespace ProgramStarter.ViewModels
             //when seconds will be 0 then begin starting procedure
             if (seconds == 0)
             {
-
+                TimeToStart.Stop();
+                ProgramsStartingProcedure();
             }
+
+        }
+        #endregion
+
+        #region ProgramsStartingProcedure
+        /// <summary>
+        /// This method is a starting procedure of all programs in the list
+        /// </summary>
+        private void ProgramsStartingProcedure()
+        {
 
         }
         #endregion
@@ -573,7 +584,8 @@ namespace ProgramStarter.ViewModels
 
         private void StartNowButtonClicked(object obj)
         {
-            throw new NotImplementedException();
+            TimeToStart.Stop();
+            ProgramsStartingProcedure();
         }
         #endregion
 
