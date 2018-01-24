@@ -42,6 +42,10 @@ namespace ProgramStarter.ViewModels
 
         DispatcherTimer TimeToStart = new DispatcherTimer();
 
+        DispatcherTimer Refresh1sec = new DispatcherTimer();
+
+        StartingProgramsHandler startingProcedure;
+
         #region ButtonCommands
         public ICommand StartNowButtonCommand { get; private set; }
         public ICommand DontStartButtonCommand { get; private set; }
@@ -98,6 +102,28 @@ namespace ProgramStarter.ViewModels
         }
         #endregion Gap_Between_Programs
 
+        #region PercentageOfStartedPrograms
+        
+        private string mPercentageOfStartedPrograms;
+
+        public string PercentageOfStartedPrograms
+        {
+            get
+            {
+                return mPercentageOfStartedPrograms;
+            }
+
+            set
+            {
+                if (mPercentageOfStartedPrograms == value)
+                    return;
+
+                mPercentageOfStartedPrograms = value;
+                OnPropertyChanged(nameof(PercentageOfStartedPrograms));
+            }
+        }
+        #endregion PercentageOfStartedPrograms
+
         #region Auto_Start_Value
         private bool Auto_Start_Value_default = false;
 
@@ -141,6 +167,27 @@ namespace ProgramStarter.ViewModels
             }
         }
         #endregion OptionsButtonContent
+
+        #region SecondsToStartTextBlockVisibility
+        private Visibility mSecondsToStartTextBlockVisibility;
+
+        public Visibility SecondsToStartTextBlockVisibility
+        {
+            get
+            {
+                return mSecondsToStartTextBlockVisibility;
+            }
+
+            set
+            {
+                if (mSecondsToStartTextBlockVisibility == value)
+                    return;
+
+                mSecondsToStartTextBlockVisibility = value;
+                OnPropertyChanged(nameof(SecondsToStartTextBlockVisibility));
+            }
+        }
+        #endregion SecondsToStartTextBlockVisibility
 
         #region OptionsGridVisibility
         private Visibility mOptionsGridVisibility;
@@ -248,8 +295,10 @@ namespace ProgramStarter.ViewModels
 
         
         public StartProgramsViewModel()
-        {            
+        {
             //Assigning startup values for controls
+            SecondsToStartTextBlockVisibility = Visibility.Visible;
+            ProgressBarVisibility = Visibility.Collapsed;
             OptionsGridVisibility = Visibility.Collapsed;
             OptionsButtonContent = "Options >>>";
             ProgramsToStartGridVisibility = Visibility.Collapsed;
@@ -274,14 +323,14 @@ namespace ProgramStarter.ViewModels
             AddProgramToProgramsToStartList = new RelayCommand(AddProgramContextMenuItemClicked);
             SaveButtonCommand = new RelayCommand(SaveButtonClicked);
 
-            //Start counting seconds to start 
+            //Start counting seconds to start and begin startin procedure of programs when countdown is done
             CountingSecondsToStart();            
 
         }
 
         #region CountingSecondsToStart
         /// <summary>
-        /// This method is couting seconds to start programs
+        /// This method is couting seconds to start programs and fires starting procedure when countdown is finished
         /// </summary>
         private void CountingSecondsToStart()
         {
@@ -304,20 +353,53 @@ namespace ProgramStarter.ViewModels
             //when seconds will be 0 then begin starting procedure
             if (seconds == 0)
             {
+                Seconds_To_Start = seconds.ToString();
                 TimeToStart.Stop();
                 ProgramsStartingProcedure();
             }
-
+            
         }
         #endregion
 
         #region ProgramsStartingProcedure
         /// <summary>
-        /// This method is a starting procedure of all programs in the list
+        /// This method is a starting procedure for all programs in the list
         /// </summary>
         private void ProgramsStartingProcedure()
         {
+            //changing values of controls and assigning startup values
+            SecondsToStartTextBlockVisibility = Visibility.Collapsed;
+            ProgressBarVisibility = Visibility.Visible;
+            PercentageOfStartedPrograms = "0";
 
+            //Start of 1 sec timer for refreshing values for UI
+            Refresh1sec.Interval = TimeSpan.FromSeconds(1);
+            Refresh1sec.Tick += Refresh1sec_Tick;
+            Refresh1sec.Start();
+
+            //Starting Procedure
+            startingProcedure = new StartingProgramsHandler(ProgramsToStartList.ToList(), Gap_Between_Programs);
+            Task.Run(() => startingProcedure.Start());          
+            
+        }
+
+        /// <summary>
+        /// This timer is to refresh values on UI each second during ProgramsStartingProcedure
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Refresh1sec_Tick(object sender, EventArgs e)
+        {
+            if (!startingProcedure.IsStartupDone)
+            {
+                PercentageOfStartedPrograms = startingProcedure.GetPercentOfStartedPrograms().ToString();
+            }
+            else
+            {
+                PercentageOfStartedPrograms = startingProcedure.GetPercentOfStartedPrograms().ToString();
+                Refresh1sec.Stop();
+            }
+            
         }
         #endregion
 
