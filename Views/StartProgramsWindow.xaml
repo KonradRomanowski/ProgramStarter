@@ -18,10 +18,17 @@
         <StackPanel>
             <Grid>    
                 <!-- Progress Bar-->
-                <ProgressBar Minimum="0" Maximum="100" Value="75" Name="pbStatus" Visibility="Hidden"/>
+                <ProgressBar Minimum="0" Maximum="100" Value="{Binding PercentageOfStartedPrograms}" Name="pbStatus" Visibility="{Binding ProgressBarVisibility}"/>
 
-                <!-- Text -->
-                <TextBlock x:Name="Seconds_To_Start"  HorizontalAlignment="Center">
+                <!-- Text when starting programs-->
+                <TextBlock x:Name="StartupProcedureText"  HorizontalAlignment="Center" Visibility="{Binding ProgressBarVisibility}">
+                    <Run Text="Progress:" />
+                    <Run Text="{Binding PercentageOfStartedPrograms}" />
+                    <Run Text="%" />
+                </TextBlock>
+
+                <!-- Text when counting seconds to start-->
+                <TextBlock x:Name="Seconds_To_Start"  HorizontalAlignment="Center" Visibility="{Binding SecondsToStartTextBlockVisibility}">
                     <Run Text="Programs will be started automatically in" />
                     <Run Text="{Binding Seconds_To_Start}" />
                     <Run Text="seconds" />
