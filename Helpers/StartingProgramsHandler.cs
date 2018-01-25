@@ -34,6 +34,13 @@ namespace ProgramStarter.Helpers
         public bool IsStartupDone { get; private set; }
         #endregion IsStartupDone
 
+        #region ErrorsList
+        /// <summary>
+        /// List of type ErrorLog with all error that occures during starting of programs procedure
+        /// </summary>
+        public List<ErrorLog> ErrorsList { get; private set; }
+        #endregion ErrorsList
+
         #endregion Fields&Properties
 
         public StartingProgramsHandler(List<ProgramToStart> _programsToStartList, string _gapBetweenPrograms)
@@ -72,8 +79,19 @@ namespace ProgramStarter.Helpers
         private void StartNextProgram()
         {
             //Start program
+            ProgramToStart program = ProgramsToStartList.Where(p => p.StartingOrder == CurrentProgramStartingOrder).FirstOrDefault();
             string path = ProgramsToStartList.Where(p => p.StartingOrder == CurrentProgramStartingOrder).Select(x => x.Path).FirstOrDefault().ToString();
-            StartProgram(path); //TODO: try catch
+
+            try
+            {
+                StartProgram(path);
+            }
+            catch (Exception ex)
+            {
+                ErrorLog log = new ErrorLog(DateTime.Now, program.ProgramName, program.Path, ex.ToString());
+                ErrorsList.Add(log);                
+            }
+            
             //TODO: bring app to front after start of every program
 
             //Calculate percentage of started programs
