@@ -392,11 +392,11 @@ namespace ProgramStarter.ViewModels
         {
             if (!startingProcedure.IsStartupDone)
             {
-                PercentageOfStartedPrograms = startingProcedure.GetPercentOfStartedPrograms().ToString();
+                PercentageOfStartedPrograms = startingProcedure.GetPercentOfStartedPrograms().ToString().Split(',').FirstOrDefault();
             }
             else
             {
-                PercentageOfStartedPrograms = startingProcedure.GetPercentOfStartedPrograms().ToString();
+                PercentageOfStartedPrograms = startingProcedure.GetPercentOfStartedPrograms().ToString().Split(',').FirstOrDefault();
                 Refresh1sec.Stop();
             }
             
