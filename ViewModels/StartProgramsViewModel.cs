@@ -231,6 +231,27 @@ namespace ProgramStarter.ViewModels
         }
         #endregion ProgressBarVisibility
 
+        #region FinalizeStartNoErrorsVisibility
+        private Visibility mFinalizeStartNoErrorsVisibility;
+
+        public Visibility FinalizeStartNoErrorsVisibility
+        {
+            get
+            {
+                return mFinalizeStartNoErrorsVisibility;
+            }
+
+            set
+            {
+                if (mFinalizeStartNoErrorsVisibility == value)
+                    return;
+
+                mFinalizeStartNoErrorsVisibility = value;
+                OnPropertyChanged(nameof(FinalizeStartNoErrorsVisibility));
+            }
+        }
+        #endregion FinalizeStartNoErrorsVisibility
+                
         #region ProgramsToStartButtonContent
         private string mProgramsToStartButtonContent;
 
@@ -300,6 +321,7 @@ namespace ProgramStarter.ViewModels
             SecondsToStartTextBlockVisibility = Visibility.Visible;
             ProgressBarVisibility = Visibility.Collapsed;
             OptionsGridVisibility = Visibility.Collapsed;
+            FinalizeStartNoErrorsVisibility = Visibility.Collapsed;
             OptionsButtonContent = "Options >>>";
             ProgramsToStartGridVisibility = Visibility.Collapsed;
             ProgramsToStartButtonContent = "Programs to Start >>>";
@@ -398,8 +420,24 @@ namespace ProgramStarter.ViewModels
             {
                 PercentageOfStartedPrograms = startingProcedure.GetPercentOfStartedPrograms().ToString().Split(',').FirstOrDefault();
                 Refresh1sec.Stop();
+                System.Threading.Thread.Sleep(1000);
+                FinalizeStartingProcedure();
             }
             
+        }
+        #endregion
+
+        #region FinalizeStartingProcedure
+        /// <summary>
+        /// This method will check if any errors occur during starting procedure and inform UI
+        /// </summary>
+        private void FinalizeStartingProcedure()
+        {
+            if (!startingProcedure.HasErrors)
+            {
+                ProgressBarVisibility = Visibility.Collapsed;
+                FinalizeStartNoErrorsVisibility = Visibility.Visible;
+            }
         }
         #endregion
 
