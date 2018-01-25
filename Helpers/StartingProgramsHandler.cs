@@ -1,6 +1,8 @@
 ﻿using ProgramStarter.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,7 +43,7 @@ namespace ProgramStarter.Helpers
             GapBetweenPrograms = Int32.Parse(_gapBetweenPrograms);
 
             //Setting start values for properties
-            CurrentProgramStartingOrder = 0;
+            CurrentProgramStartingOrder = 1;
             PercentOfStartedPrograms = 0;
 
             //Setting timer for starting programs
@@ -70,7 +72,9 @@ namespace ProgramStarter.Helpers
         private void StartNextProgram()
         {
             //Start program
-            //TODO
+            string path = ProgramsToStartList.Where(p => p.StartingOrder == CurrentProgramStartingOrder).Select(x => x.Path).FirstOrDefault().ToString();
+            StartProgram(path); //TODO: try catch
+            //TODO: bring app to front after start of every program
 
             //Calculate percentage of started programs
             PercentOfStartedPrograms = ((float) CurrentProgramStartingOrder / ProgramsToStartList.Count()) * 100;
@@ -89,13 +93,12 @@ namespace ProgramStarter.Helpers
         private void GapCountTimer_Tick(object sender, EventArgs e)
         {
             //If there are still programs to start on the list then start the next one on the list
-            if (CurrentProgramStartingOrder < ProgramsToStartList.Count())
+            if (CurrentProgramStartingOrder <= ProgramsToStartList.Count())
                 StartNextProgram();
             //else stop the starting procedure
             else
             {
-                IsStartupDone = true;
-                PercentOfStartedPrograms = ((float)CurrentProgramStartingOrder / ProgramsToStartList.Count()) * 100;
+                IsStartupDone = true;                
                 GapCountTimer.Stop();
             }
                 
@@ -112,6 +115,26 @@ namespace ProgramStarter.Helpers
             return PercentOfStartedPrograms;
         }
 
+        #endregion
+
+        #region StartProgram
+        /// <summary>
+        /// This method is starting program from _path or throwing exceptions if any errors occur
+        /// </summary>
+        /// <param name="_path">Path to program which needs to be started</param>
+        private void StartProgram(string _path)
+        {
+            //check if file exist
+            if (File.Exists(_path))
+            {
+                //Start the program from _path
+                Process program = Process.Start(_path);
+            }
+            else
+            {
+                throw new Exception("File does not exist at path: " + _path);
+            }
+        }
         #endregion
     }
 }
