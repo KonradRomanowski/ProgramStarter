@@ -34,6 +34,12 @@
                     <Run Text="seconds" />
                 </TextBlock>
 
+                <!-- Text when finalize starting procedure-->
+                <TextBlock x:Name="FinalizeStartingProcedureWithoutErrorsText"  HorizontalAlignment="Center" Visibility="{Binding FinalizeStartNoErrorsVisibility}">
+                    <Run Text="All programs started successfully " />                    
+                    <Run Text="V" Foreground="Green"/>
+                </TextBlock>
+
             </Grid>
             
             <!-- Start Now/Don't Start Buttons -->
