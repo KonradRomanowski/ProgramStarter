@@ -41,6 +41,13 @@ namespace ProgramStarter.Helpers
         public List<ErrorLog> ErrorsList { get; private set; }
         #endregion ErrorsList
 
+        #region HasErrors
+        /// <summary>
+        /// This property is set to true if any errors occured during starting of programs procedure
+        /// </summary>
+        public bool HasErrors { get; private set; }
+        #endregion HasErrors
+
         #endregion Fields&Properties
 
         public StartingProgramsHandler(List<ProgramToStart> _programsToStartList, string _gapBetweenPrograms)
@@ -88,6 +95,7 @@ namespace ProgramStarter.Helpers
             }
             catch (Exception ex)
             {
+                HasErrors = true;
                 ErrorLog log = new ErrorLog(DateTime.Now, program.ProgramName, program.Path, ex.ToString());
                 ErrorsList.Add(log);                
             }
@@ -154,5 +162,6 @@ namespace ProgramStarter.Helpers
             }
         }
         #endregion
+               
     }
 }
