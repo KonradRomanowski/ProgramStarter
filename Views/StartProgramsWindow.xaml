@@ -48,7 +48,7 @@
 
             </Grid>
             
-            <!-- Start Now/Don't Start Buttons -->
+            <!-- Commands Buttons -->
             <Grid Margin="10">
 
                 <Grid.ColumnDefinitions>
@@ -56,8 +56,12 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" x:Name="Start_Now_Button" Content="Start Now" Margin="0 0 10 0" Command="{Binding StartNowButtonCommand}" />
-                <Button Grid.Column="1" x:Name="Dont_Start_Button" Content="Don't Start" Margin="10 0 0 0" Command="{Binding DontStartButtonCommand}" />
+                <!-- Start Now/Don't Start Buttons -->
+                <Button Grid.Column="0" x:Name="Start_Now_Button" Content="Start Now" Margin="0 0 10 0" Command="{Binding StartNowButtonCommand}" Visibility="{Binding SecondsToStartTextBlockVisibility}"/>
+                <Button Grid.Column="1" x:Name="Dont_Start_Button" Content="Don't Start" Margin="10 0 0 0" Command="{Binding DontStartButtonCommand}" Visibility="{Binding SecondsToStartTextBlockVisibility}"/>
+                
+                <!-- Cancel starting procedure button -->
+                <Button Grid.ColumnSpan="2" x:Name="Cancel_Button" Content="Cancel" Margin="10 0 0 0" Command="{Binding DontStartButtonCommand}" Visibility="{Binding ProgressBarVisibility}" Width="60"/>
 
             </Grid>
 
