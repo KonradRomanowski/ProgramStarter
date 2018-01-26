@@ -251,7 +251,28 @@ namespace ProgramStarter.ViewModels
             }
         }
         #endregion FinalizeStartNoErrorsVisibility
-                
+
+        #region FinalizeStartWithErrorsVisibility
+        private Visibility mFinalizeStartWithErrorsVisibility;
+
+        public Visibility FinalizeStartWithErrorsVisibility
+        {
+            get
+            {
+                return mFinalizeStartWithErrorsVisibility;
+            }
+
+            set
+            {
+                if (mFinalizeStartWithErrorsVisibility == value)
+                    return;
+
+                mFinalizeStartWithErrorsVisibility = value;
+                OnPropertyChanged(nameof(FinalizeStartWithErrorsVisibility));
+            }
+        }
+        #endregion FinalizeStartWithErrorsVisibility       
+
         #region ProgramsToStartButtonContent
         private string mProgramsToStartButtonContent;
 
@@ -322,6 +343,7 @@ namespace ProgramStarter.ViewModels
             ProgressBarVisibility = Visibility.Collapsed;
             OptionsGridVisibility = Visibility.Collapsed;
             FinalizeStartNoErrorsVisibility = Visibility.Collapsed;
+            FinalizeStartWithErrorsVisibility = Visibility.Collapsed;
             OptionsButtonContent = "Options >>>";
             ProgramsToStartGridVisibility = Visibility.Collapsed;
             ProgramsToStartButtonContent = "Programs to Start >>>";
@@ -433,10 +455,17 @@ namespace ProgramStarter.ViewModels
         /// </summary>
         private void FinalizeStartingProcedure()
         {
+            //if no errors during starting procedure
             if (!startingProcedure.HasErrors)
             {
                 ProgressBarVisibility = Visibility.Collapsed;
                 FinalizeStartNoErrorsVisibility = Visibility.Visible;
+            }
+            //if errors occured during starting procedure
+            else
+            {
+                ProgressBarVisibility = Visibility.Collapsed;
+                FinalizeStartWithErrorsVisibility = Visibility.Visible;
             }
         }
         #endregion
