@@ -9,7 +9,8 @@
         mc:Ignorable="d"
         Title="Program Starter" Height="135" Width="400"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        Topmost="True">
     <Window.DataContext>
         <ViewModel:StartProgramsViewModel/>
     </Window.DataContext>
@@ -37,7 +38,12 @@
                 <!-- Text when finalize starting procedure-->
                 <TextBlock x:Name="FinalizeStartingProcedureWithoutErrorsText"  HorizontalAlignment="Center" Visibility="{Binding FinalizeStartNoErrorsVisibility}">
                     <Run Text="All programs started successfully " />                    
-                    <Run Text="V" Foreground="Green"/>
+                    <Run Text="V" Foreground="LightGreen"/>
+                </TextBlock>
+
+                <TextBlock x:Name="FinalizeStartingProcedureWithErrorsText"  HorizontalAlignment="Center" Visibility="{Binding FinalizeStartWithErrorsVisibility}">
+                    <Run Text="Not all programs started successfully " />                    
+                    <Run Text="X" Foreground="Red"/>
                 </TextBlock>
 
             </Grid>
