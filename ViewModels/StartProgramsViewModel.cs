@@ -189,6 +189,27 @@ namespace ProgramStarter.ViewModels
         }
         #endregion SecondsToStartTextBlockVisibility
 
+        #region StartAndDontStartButtonsVisibility
+        private Visibility mStartAndDontStartButtonsVisibility;
+
+        public Visibility StartAndDontStartButtonsVisibility
+        {
+            get
+            {
+                return mStartAndDontStartButtonsVisibility;
+            }
+
+            set
+            {
+                if (mStartAndDontStartButtonsVisibility == value)
+                    return;
+
+                mStartAndDontStartButtonsVisibility = value;
+                OnPropertyChanged(nameof(StartAndDontStartButtonsVisibility));
+            }
+        }
+        #endregion StartAndDontStartButtonsVisibility
+
         #region OptionsGridVisibility
         private Visibility mOptionsGridVisibility;
 
@@ -340,6 +361,7 @@ namespace ProgramStarter.ViewModels
         {
             //Assigning startup values for controls
             SecondsToStartTextBlockVisibility = Visibility.Visible;
+            StartAndDontStartButtonsVisibility = Visibility.Visible;
             ProgressBarVisibility = Visibility.Collapsed;
             OptionsGridVisibility = Visibility.Collapsed;
             FinalizeStartNoErrorsVisibility = Visibility.Collapsed;
@@ -413,6 +435,7 @@ namespace ProgramStarter.ViewModels
         {
             //changing values of controls and assigning startup values
             SecondsToStartTextBlockVisibility = Visibility.Collapsed;
+            StartAndDontStartButtonsVisibility = Visibility.Collapsed;
             ProgressBarVisibility = Visibility.Visible;
             PercentageOfStartedPrograms = "0";
 
@@ -729,6 +752,7 @@ namespace ProgramStarter.ViewModels
         private void DontStartButtonClicked(object obj)
         {
             TimeToStart.Stop();
+            SecondsToStartTextBlockVisibility = Visibility.Hidden;
         }
 
         private void StartNowButtonClicked(object obj)
