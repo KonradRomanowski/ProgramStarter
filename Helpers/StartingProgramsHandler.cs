@@ -71,11 +71,23 @@ namespace ProgramStarter.Helpers
         /// </summary>
         public void Start()
         {
-            //Start first program in the list 
-            StartNextProgram();
+            //if programs list is not empty then begin starting programs
+            if (ProgramsToStartList.Any())
+            {
+                //Start first program in the list 
+                StartNextProgram();
 
-            //Start GapCountTimer and every timer tick next program will be started
-            GapCountTimer.Start();
+                //Start GapCountTimer and every timer tick next program will be started
+                GapCountTimer.Start();
+            }
+            //if list is empty then don't begin starting programs and update ErrorLog
+            else
+            {
+                HasErrors = true;
+                ErrorLog log = new ErrorLog(DateTime.Now, "", "", "List of programs to start is empty!");
+                ErrorsList.Add(log);
+            }
+            
         }
         #endregion
 
@@ -98,9 +110,7 @@ namespace ProgramStarter.Helpers
                 HasErrors = true;
                 ErrorLog log = new ErrorLog(DateTime.Now, program.ProgramName, program.Path, ex.ToString());
                 ErrorsList.Add(log);                
-            }
-            
-            //TODO: bring app to front after start of every program
+            }  
 
             //Calculate percentage of started programs
             PercentOfStartedPrograms = ((float) CurrentProgramStartingOrder / ProgramsToStartList.Count()) * 100;
