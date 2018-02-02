@@ -55,6 +55,7 @@ namespace ProgramStarter.ViewModels
         public ICommand RemoveProgramFromProgramsToStartList { get; private set; }
         public ICommand AddProgramToProgramsToStartList { get; private set; }
         public ICommand SaveButtonCommand { get; private set; }
+        public ICommand TryAgainButtonCommand { get; private set; }
         #endregion ButtonCommands
 
         #region Seconds_To_Start
@@ -390,6 +391,7 @@ namespace ProgramStarter.ViewModels
             RemoveProgramFromProgramsToStartList = new RelayCommand(RemoveProgramContextMenuItemClicked);
             AddProgramToProgramsToStartList = new RelayCommand(AddProgramContextMenuItemClicked);
             SaveButtonCommand = new RelayCommand(SaveButtonClicked);
+            TryAgainButtonCommand = new RelayCommand(TryAgainButtonClicked);
 
             //Start counting seconds to start and begin startin procedure of programs when countdown is done
             CountingSecondsToStart();            
@@ -774,6 +776,19 @@ namespace ProgramStarter.ViewModels
             //Finalize starting procedue with errors
             ProgressBarVisibility = Visibility.Collapsed;
             FinalizeStartWithErrorsVisibility = Visibility.Visible;
+        }
+        #endregion
+
+        #region TryAgain button clicked event
+
+        private void TryAgainButtonClicked(object obj)
+        {
+            //Setting proper visibility
+            FinalizeStartNoErrorsVisibility = Visibility.Collapsed;
+            FinalizeStartWithErrorsVisibility = Visibility.Collapsed;
+
+            //Start programs again
+            ProgramsStartingProcedure();
         }
         #endregion
 
