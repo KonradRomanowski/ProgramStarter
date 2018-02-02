@@ -49,6 +49,7 @@ namespace ProgramStarter.ViewModels
         #region ButtonCommands
         public ICommand StartNowButtonCommand { get; private set; }
         public ICommand DontStartButtonCommand { get; private set; }
+        public ICommand CancelButtonCommand { get; private set; }
         public ICommand OptionsButtonCommand { get; private set; }
         public ICommand ProgramsToStartButtonCommand { get; private set; }
         public ICommand RemoveProgramFromProgramsToStartList { get; private set; }
@@ -383,6 +384,7 @@ namespace ProgramStarter.ViewModels
             //Binding for buttons
             StartNowButtonCommand = new RelayCommand(StartNowButtonClicked);
             DontStartButtonCommand = new RelayCommand(DontStartButtonClicked);
+            CancelButtonCommand = new RelayCommand(CancelButtonClicked);
             OptionsButtonCommand = new RelayCommand(OptionsButtonClicked);
             ProgramsToStartButtonCommand = new RelayCommand(ProgramsToStartButtonClicked);
             RemoveProgramFromProgramsToStartList = new RelayCommand(RemoveProgramContextMenuItemClicked);
@@ -759,6 +761,19 @@ namespace ProgramStarter.ViewModels
         {
             TimeToStart.Stop();
             ProgramsStartingProcedure();
+        }
+        #endregion
+
+        #region Cancel button clicked event
+
+        private void CancelButtonClicked(object obj)
+        {
+            startingProcedure.StopStartingProcedure();
+            Refresh1sec.Stop();
+
+            //Finalize starting procedue with errors
+            ProgressBarVisibility = Visibility.Collapsed;
+            FinalizeStartWithErrorsVisibility = Visibility.Visible;
         }
         #endregion
 
