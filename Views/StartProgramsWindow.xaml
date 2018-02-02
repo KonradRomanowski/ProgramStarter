@@ -61,7 +61,7 @@
                 <Button Grid.Column="1" x:Name="Dont_Start_Button" Content="Don't Start" Margin="10 0 0 0" Command="{Binding DontStartButtonCommand}" Visibility="{Binding StartAndDontStartButtonsVisibility}"/>
                 
                 <!-- Cancel starting procedure button -->
-                <Button Grid.ColumnSpan="2" x:Name="Cancel_Button" Content="Cancel" Margin="10 0 0 0" Command="{Binding DontStartButtonCommand}" Visibility="{Binding ProgressBarVisibility}" Width="60"/>
+                <Button Grid.ColumnSpan="2" x:Name="Cancel_Button" Content="Cancel" Margin="10 0 0 0" Command="{Binding CancelButtonCommand}" Visibility="{Binding ProgressBarVisibility}" Width="60"/>
                 
                 <!-- Try Again and ErrorLog buttons-->
                 <Button Grid.Column="0" x:Name="TryAgainNoErrors_Button" Content="Try Again" Margin="0 0 10 0" Command="{Binding StartNowButtonCommand}" Visibility="{Binding FinalizeStartNoErrorsVisibility}"/>
