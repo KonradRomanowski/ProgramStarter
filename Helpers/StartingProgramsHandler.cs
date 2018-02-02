@@ -48,6 +48,13 @@ namespace ProgramStarter.Helpers
         public bool HasErrors { get; private set; }
         #endregion HasErrors
 
+        #region IsCancelled
+        /// <summary>
+        /// This property is set to true when starting procedure is cancelled by user
+        /// </summary>
+        public bool IsCancelled { get; private set; }
+        #endregion IsCancelled
+
         #endregion Fields&Properties
 
         public StartingProgramsHandler(List<ProgramToStart> _programsToStartList, string _gapBetweenPrograms)
@@ -57,8 +64,11 @@ namespace ProgramStarter.Helpers
             GapBetweenPrograms = Int32.Parse(_gapBetweenPrograms);
 
             //Setting start values for properties
+            ErrorsList = new List<ErrorLog>();
             CurrentProgramStartingOrder = 1;
             PercentOfStartedPrograms = 0;
+            HasErrors = false;
+            IsCancelled = false;
 
             //Setting timer for starting programs
             GapCountTimer.Interval = TimeSpan.FromSeconds(GapBetweenPrograms);
@@ -172,6 +182,30 @@ namespace ProgramStarter.Helpers
             }
         }
         #endregion
-               
+
+        #region StopStartingProcedure
+        /// <summary>
+        /// This method is stopping the starting procedure
+        /// </summary>
+        public void StopStartingProcedure()
+        {
+            GapCountTimer.Stop();
+            IsCancelled = true;
+            HasErrors = true;
+
+            ErrorLog log = new ErrorLog(DateTime.Now, "x", "x", "Starting procedure cancelled by User");
+            ErrorsList.Add(log);
+        }
+        #endregion
+
+        #region Reset
+        /// <summary>
+        /// This method is resetting starting procedure values
+        /// </summary>
+        public void Reset()
+        {
+            //probably not needed
+        }
+        #endregion
     }
 }
