@@ -1,0 +1,34 @@
+﻿<Window x:Class="ProgramStarter.Views.ShowErrorLogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProgramStarter.Views"
+        xmlns:ViewModel="clr-namespace:ProgramStarter.ViewModels"
+        mc:Ignorable="d"
+        Title="Error Log" Height="300" Width="600"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Topmost="True">
+    <!--<Window.DataContext>
+        <ViewModel:ShowErrorLogViewModel/>
+    </Window.DataContext>-->
+    
+    <Grid>
+
+        <ListView Grid.Column="0" Grid.Row="1" Name="ProgramsToStartListView" Height="100" Margin="10" ItemsSource="{Binding ErrorLogsList}" >
+
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Date" Width="40" DisplayMemberBinding="{Binding DateAndTime}" />
+                    <GridViewColumn Header="Name" Width="70" DisplayMemberBinding="{Binding ProgramName}" />
+                    <GridViewColumn Header="Path" Width="180" DisplayMemberBinding="{Binding ProgramPath}" />
+                    <GridViewColumn Header="Error Description" Width="180" DisplayMemberBinding="{Binding ErrorDescription}" />
+                </GridView>
+            </ListView.View>
+
+        </ListView>
+                          
+
+    </Grid>
+</Window>
