@@ -66,7 +66,7 @@
                 <!-- Try Again and ErrorLog buttons-->
                 <Button Grid.Column="0" x:Name="TryAgainNoErrors_Button" Content="Try Again" Margin="0 0 10 0" Command="{Binding TryAgainButtonCommand}" Visibility="{Binding FinalizeStartNoErrorsVisibility}"/>
                 <Button Grid.Column="0" x:Name="TryAgainErrors_Button" Content="Try Again" Margin="0 0 10 0" Command="{Binding TryAgainButtonCommand}" Visibility="{Binding FinalizeStartWithErrorsVisibility}"/>
-                <Button Grid.Column="1" x:Name="ErrorLog_Button" Content="Error Log" Margin="10 0 0 0" Command="{Binding DontStartButtonCommand}" Visibility="{Binding FinalizeStartWithErrorsVisibility}"/>
+                <Button Grid.Column="1" x:Name="ErrorLog_Button" Content="Error Log" Margin="10 0 0 0" Command="{Binding ErrorLogButtonCommand}" Visibility="{Binding FinalizeStartWithErrorsVisibility}"/>
 
             </Grid>
 
