@@ -70,7 +70,11 @@
     <Compile Include="Models\Option.cs" />
     <Compile Include="Models\ProgramToStart.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ShowErrorLogViewModel.cs" />
     <Compile Include="ViewModels\StartProgramsViewModel.cs" />
+    <Compile Include="Views\ShowErrorLogWindow.xaml.cs">
+      <DependentUpon>ShowErrorLogWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StartProgramsWindow.xaml.cs">
       <DependentUpon>StartProgramsWindow.xaml</DependentUpon>
     </Compile>
@@ -110,6 +114,10 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\ShowErrorLogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\StartProgramsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
