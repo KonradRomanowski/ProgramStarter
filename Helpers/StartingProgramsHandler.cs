@@ -196,16 +196,6 @@ namespace ProgramStarter.Helpers
             ErrorLog log = new ErrorLog(DateTime.Now, "x", "x", "Starting procedure cancelled by User");
             ErrorsList.Add(log);
         }
-        #endregion
-
-        #region Reset
-        /// <summary>
-        /// This method is resetting starting procedure values
-        /// </summary>
-        public void Reset()
-        {
-            //probably not needed
-        }
-        #endregion
+        #endregion               
     }
 }
