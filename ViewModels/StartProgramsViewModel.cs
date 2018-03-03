@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using ProgramStarter.Helpers;
 using ProgramStarter.Models;
+using ProgramStarter.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -56,6 +57,7 @@ namespace ProgramStarter.ViewModels
         public ICommand AddProgramToProgramsToStartList { get; private set; }
         public ICommand SaveButtonCommand { get; private set; }
         public ICommand TryAgainButtonCommand { get; private set; }
+        public ICommand ErrorLogButtonCommand { get; private set; }
         #endregion ButtonCommands
 
         #region Seconds_To_Start
@@ -392,6 +394,7 @@ namespace ProgramStarter.ViewModels
             AddProgramToProgramsToStartList = new RelayCommand(AddProgramContextMenuItemClicked);
             SaveButtonCommand = new RelayCommand(SaveButtonClicked);
             TryAgainButtonCommand = new RelayCommand(TryAgainButtonClicked);
+            ErrorLogButtonCommand = new RelayCommand(ErrorLogButtonClicked);
 
             //Start counting seconds to start and begin startin procedure of programs when countdown is done
             CountingSecondsToStart();            
@@ -791,6 +794,17 @@ namespace ProgramStarter.ViewModels
             ProgramsStartingProcedure();
         }
         #endregion
+
+        #region ErrorLog Button Clicked event
+
+        private void ErrorLogButtonClicked(object obj)
+        {
+            ShowErrorLogViewModel vm = new ShowErrorLogViewModel(startingProcedure.ErrorsList);
+            Window win = new ShowErrorLogWindow();
+            win.DataContext = vm;            
+            win.Show();
+        }
+        #endregion        
 
         #region Drag and Drop methods for ProgramsToStartListView
 
