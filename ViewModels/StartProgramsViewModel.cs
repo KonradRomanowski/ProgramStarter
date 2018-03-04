@@ -587,13 +587,13 @@ namespace ProgramStarter.ViewModels
                     //if option already exist then update value
                     foreach (Option item in optionsList.Where(x => x.OptionName == "SecondsToStartPrograms"))
                     {
-                        item.ChangeOptionValue(Seconds_To_Start_Option);
+                        item.ChangeOptionValue(Seconds_To_Start_Option.Trim());
                     }
                 }
                 else
                 {
                     //if option don't exists on the list, add a new one
-                    Option item = new Option("SecondsToStartPrograms", Seconds_To_Start_Option);
+                    Option item = new Option("SecondsToStartPrograms", Seconds_To_Start_Option.Trim());
                     optionsList.Add(item);
                 }
             }
@@ -612,13 +612,13 @@ namespace ProgramStarter.ViewModels
                     //if option already exist then update value
                     foreach (Option item in optionsList.Where(x => x.OptionName == "GapBetweenStartingPrograms"))
                     {
-                        item.ChangeOptionValue(Gap_Between_Programs);
+                        item.ChangeOptionValue(Gap_Between_Programs.Trim());
                     }
                 }
                 else
                 {
                     //if option don't exists on the list, add a new one
-                    Option item = new Option("GapBetweenStartingPrograms", Gap_Between_Programs);
+                    Option item = new Option("GapBetweenStartingPrograms", Gap_Between_Programs.Trim());
                     optionsList.Add(item);
                 }
             }
