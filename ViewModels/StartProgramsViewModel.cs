@@ -440,6 +440,7 @@ namespace ProgramStarter.ViewModels
         void ProgramsToStartListIsEmpty()
         {
             ProgramsToStartListIsEmptyVisibility = Visibility.Visible;
+            StartAndDontStartButtonsVisibility = Visibility.Visible;
 
             SecondsToStartTextBlockVisibility = Visibility.Collapsed;
         }
@@ -813,7 +814,14 @@ namespace ProgramStarter.ViewModels
         private void StartNowButtonClicked(object obj)
         {
             TimeToStart.Stop();
-            ProgramsStartingProcedure();
+            if (ProgramsToStartList.Any())
+            {
+                ProgramsStartingProcedure();
+            }
+            else
+            {
+                ProgramsToStartListIsEmpty();
+            }
         }
         #endregion
 
@@ -839,7 +847,14 @@ namespace ProgramStarter.ViewModels
             FinalizeStartWithErrorsVisibility = Visibility.Collapsed;
 
             //Start programs again
-            ProgramsStartingProcedure();
+            if (ProgramsToStartList.Any())
+            {
+                ProgramsStartingProcedure();
+            }
+            else
+            {
+                ProgramsToStartListIsEmpty();
+            }
         }
         #endregion
 
