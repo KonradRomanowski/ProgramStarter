@@ -83,6 +83,29 @@ namespace ProgramStarter.ViewModels
         }
         #endregion Seconds_To_Start
 
+        #region Seconds_To_Start_Option
+        private string Seconds_To_Start_Option_default = "5";
+
+        private string mSeconds_To_Start_Option;
+
+        public string Seconds_To_Start_Option
+        {
+            get
+            {
+                return mSeconds_To_Start_Option;
+            }
+
+            set
+            {
+                if (mSeconds_To_Start_Option == value)
+                    return;
+
+                mSeconds_To_Start_Option = value;
+                OnPropertyChanged(nameof(Seconds_To_Start_Option));
+            }
+        }
+        #endregion Seconds_To_Start_Option
+
         #region Gap_Between_Programs
         private string Gap_Between_Programs_default = "1";
 
@@ -555,30 +578,30 @@ namespace ProgramStarter.ViewModels
         {
             //Assign new options to optionsList
 
-            #region Seconds_To_Start
-            //Seconds_To_Start
-            if (Seconds_To_Start != null)
+            #region Seconds_To_Start_Option
+            //Seconds_To_Start_Option
+            if (Seconds_To_Start_Option != null)
             {
                 if (optionsList.Where(x => x.OptionName == "SecondsToStartPrograms").Count() > 0)
                 {
                     //if option already exist then update value
                     foreach (Option item in optionsList.Where(x => x.OptionName == "SecondsToStartPrograms"))
                     {
-                        item.ChangeOptionValue(Seconds_To_Start);
+                        item.ChangeOptionValue(Seconds_To_Start_Option);
                     }
                 }
                 else
                 {
                     //if option don't exists on the list, add a new one
-                    Option item = new Option("SecondsToStartPrograms", Seconds_To_Start);
+                    Option item = new Option("SecondsToStartPrograms", Seconds_To_Start_Option);
                     optionsList.Add(item);
                 }
             }
             else
             {
-                MessageBox.Show("Option Seconds To Start cannot be null - option not saved", "ProgramStarter error");
+                MessageBox.Show("Option Seconds_To_Start_Option cannot be null - option not saved", "ProgramStarter error");
             }
-            #endregion Seconds_To_Start
+            #endregion Seconds_To_Start_Option
 
             #region Gap_Between_Programs
             //Gap_Between_Programs
@@ -1033,18 +1056,22 @@ namespace ProgramStarter.ViewModels
 
             if (optionsList.Any())
             {
-                //Seconds_To_Start
+                //Seconds_To_Start & Seconds_To_Start_Option
                 try
                 {
                     Seconds_To_Start = (optionsList.Where(x => x.OptionName == "SecondsToStartPrograms").Count() > 0) ?
                         optionsList.Where(x => x.OptionName == "SecondsToStartPrograms").Select(x => x.OptionValue).First()
                         : Seconds_To_Start_default;
+
+                    Seconds_To_Start_Option = (optionsList.Where(x => x.OptionName == "SecondsToStartPrograms").Count() > 0) ?
+                        optionsList.Where(x => x.OptionName == "SecondsToStartPrograms").Select(x => x.OptionValue).First()
+                        : Seconds_To_Start_Option_default;
                 }
                 catch (Exception ex)
                 {
                     //Assign default value
                     Seconds_To_Start = Seconds_To_Start_default;
-                    MessageBox.Show("An error occured while trying method ReadingOptionsToVariables(Assigning readed options to variable Seconds_To_Start, used default value): " + ex, "ProgramStarter error");
+                    MessageBox.Show("An error occured while trying method ReadingOptionsToVariables(Assigning readed options to variables Seconds_To_Start & Seconds_To_Start_Option, used default value): " + ex, "ProgramStarter error");
                 }
 
                 //Gap_Between_Programs
