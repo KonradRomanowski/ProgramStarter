@@ -10,20 +10,48 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         Topmost="True">
+    <!--DataContext is not necessary because it is assigned dynamically-->
     <!--<Window.DataContext>
         <ViewModel:ShowErrorLogViewModel/>
     </Window.DataContext>-->
     
     <Grid>
 
-        <ListView Grid.Column="0" Grid.Row="1" Name="ProgramsToStartListView" Height="100" Margin="10" ItemsSource="{Binding ErrorLogsList}" >
+        <ListView Grid.Column="0" Grid.Row="1" Name="ProgramsToStartListView" Height="200" Margin="10" ItemsSource="{Binding ErrorLogsList}" >            
 
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Date" Width="40" DisplayMemberBinding="{Binding DateAndTime}" />
-                    <GridViewColumn Header="Name" Width="70" DisplayMemberBinding="{Binding ProgramName}" />
-                    <GridViewColumn Header="Path" Width="180" DisplayMemberBinding="{Binding ProgramPath}" />
-                    <GridViewColumn Header="Error Description" Width="180" DisplayMemberBinding="{Binding ErrorDescription}" />
+                    <GridViewColumn Header="Date and Time" Width="100" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DateAndTime}" FontSize="9" ToolTip="{Binding DateAndTime}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Name" Width="70" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ProgramName}" FontSize="9" ToolTip="{Binding ProgramName}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    
+                    <GridViewColumn Header="Path" Width="180" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ProgramPath}" FontSize="9" ToolTip="{Binding ProgramPath}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    
+                    <GridViewColumn Header="Error Description" Width="200" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ErrorDescription}" FontSize="8" ToolTip="{Binding ErrorDescription}"/>                                
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
 
