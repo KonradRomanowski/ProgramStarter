@@ -340,6 +340,27 @@ namespace ProgramStarter.ViewModels
         }
         #endregion ProgramsToStartGridVisibility
 
+        #region ProgramsToStartListIsEmptyVisibility
+        private Visibility mProgramsToStartListIsEmptyVisibility;
+
+        public Visibility ProgramsToStartListIsEmptyVisibility
+        {
+            get
+            {
+                return mProgramsToStartListIsEmptyVisibility;
+            }
+
+            set
+            {
+                if (mProgramsToStartListIsEmptyVisibility == value)
+                    return;
+
+                mProgramsToStartListIsEmptyVisibility = value;
+                OnPropertyChanged(nameof(ProgramsToStartListIsEmptyVisibility));
+            }
+        }
+        #endregion ProgramsToStartListIsEmptyVisibility
+
         #region SelectedProgramOnProgramsToStartListView
         //SelectedProgramOnProgramsToStartListView property is checking which item is selected on ProgramsToStartListView
         ProgramToStart _selectedProgramOnProgramsToStartListView;
@@ -370,6 +391,7 @@ namespace ProgramStarter.ViewModels
             OptionsGridVisibility = Visibility.Collapsed;
             FinalizeStartNoErrorsVisibility = Visibility.Collapsed;
             FinalizeStartWithErrorsVisibility = Visibility.Collapsed;
+            ProgramsToStartListIsEmptyVisibility = Visibility.Collapsed;
             OptionsButtonContent = "Options >>>";
             ProgramsToStartGridVisibility = Visibility.Collapsed;
             ProgramsToStartButtonContent = "Programs to Start >>>";
@@ -396,10 +418,33 @@ namespace ProgramStarter.ViewModels
             TryAgainButtonCommand = new RelayCommand(TryAgainButtonClicked);
             ErrorLogButtonCommand = new RelayCommand(ErrorLogButtonClicked);
 
-            //Start counting seconds to start and begin startin procedure of programs when countdown is done
-            CountingSecondsToStart();            
+            //Check if ProgramsToStartList is not empty then start counting seconds to start
+            if (ProgramsToStartList.Any())
+            {
+                //Start counting seconds to start and begin startin procedure of programs when countdown is done
+                CountingSecondsToStart();
+            }
+            else
+            {
+                //Inform User that list is empty
+                ProgramsToStartListIsEmpty();
+            }
+                       
 
         }
+
+        #region ProgramsToStartListIsEmpty
+        /// <summary>
+        /// This method will inform GUI that ProgramsToStart is empty
+        /// </summary>
+        void ProgramsToStartListIsEmpty()
+        {
+            ProgramsToStartListIsEmptyVisibility = Visibility.Visible;
+
+            SecondsToStartTextBlockVisibility = Visibility.Collapsed;
+        }
+
+        #endregion
 
         #region CountingSecondsToStart
         /// <summary>
@@ -443,6 +488,7 @@ namespace ProgramStarter.ViewModels
             //changing values of controls and assigning startup values
             SecondsToStartTextBlockVisibility = Visibility.Collapsed;
             StartAndDontStartButtonsVisibility = Visibility.Collapsed;
+            ProgramsToStartListIsEmptyVisibility = Visibility.Collapsed;
             ProgressBarVisibility = Visibility.Visible;
             PercentageOfStartedPrograms = "0";
 
@@ -489,12 +535,14 @@ namespace ProgramStarter.ViewModels
             if (!startingProcedure.HasErrors)
             {
                 ProgressBarVisibility = Visibility.Collapsed;
+                ProgramsToStartListIsEmptyVisibility = Visibility.Collapsed;
                 FinalizeStartNoErrorsVisibility = Visibility.Visible;
             }
             //if errors occured during starting procedure
             else
             {
                 ProgressBarVisibility = Visibility.Collapsed;
+                ProgramsToStartListIsEmptyVisibility = Visibility.Collapsed;
                 FinalizeStartWithErrorsVisibility = Visibility.Visible;
             }
         }
