@@ -46,6 +46,12 @@
                     <Run Text="X" Foreground="Red"/>
                 </TextBlock>
 
+                <!-- Text when ProgramsToStartList is empty-->
+                <TextBlock x:Name="ProgramsToStartListIsempty"  HorizontalAlignment="Center" Visibility="{Binding ProgramsToStartListIsEmptyVisibility}">
+                    <Run Text="List of programs to start is empty! " />                    
+                    <Run Text="(Add some programs first)" Foreground="Red"/>
+                </TextBlock>
+
             </Grid>
             
             <!-- Commands Buttons -->
