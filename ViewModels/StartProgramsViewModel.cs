@@ -22,8 +22,8 @@ namespace ProgramStarter.ViewModels
     {
         #region Statics Definition
         //Version number and year of release
-        public static string VersionNumber { get { return "0.0.90"; } }
-        public static string YearOfRelease { get { return "2017"; } }
+        public static string VersionNumber { get { return "0.0.92"; } }
+        public static string YearOfRelease { get { return "2018"; } }
 
         //Small and big window size
         public static int StartProgramWindowHeightBig = 322;
