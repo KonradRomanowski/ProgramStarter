@@ -131,7 +131,7 @@
 
                 <CheckBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="5" IsChecked="{Binding Auto_Start_Value}"/>
 
-                <TextBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" AcceptsReturn="False" Text="{Binding Seconds_To_Start}" Width="30" TextAlignment="Center" PreviewTextInput="NumberValidationTextBox" MaxLength="2"/>
+                <TextBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" AcceptsReturn="False" Text="{Binding Seconds_To_Start_Option}" Width="30" TextAlignment="Center" PreviewTextInput="NumberValidationTextBox" MaxLength="2"/>
                 <TextBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right" AcceptsReturn="False" Text="{Binding Gap_Between_Programs}" Width="30" TextAlignment="Center" PreviewTextInput="NumberValidationTextBox" MaxLength="2"/>
 
                 <TextBlock Grid.Column="2" Grid.Row="3" HorizontalAlignment="Left" Margin="2" >
