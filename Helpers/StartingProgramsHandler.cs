@@ -12,6 +12,13 @@ namespace ProgramStarter.Helpers
 {
     public class StartingProgramsHandler
     {
+        #region Statics Definitions
+
+        static string LogNameProgramStarter = "Program Starter";
+        static string LogNameStartingProgramsHandler = "StartingProgramsHandler";
+
+        #endregion Statics Definitions
+
         #region Fields&Properties
         DispatcherTimer GapCountTimer = new DispatcherTimer();
         
@@ -94,7 +101,8 @@ namespace ProgramStarter.Helpers
             else
             {
                 HasErrors = true;
-                ErrorLog log = new ErrorLog(DateTime.Now, "", "", "List of programs to start is empty!");
+                IsStartupDone = true;
+                ErrorLog log = new ErrorLog(DateTime.Now, LogNameProgramStarter, LogNameStartingProgramsHandler, "List of programs to start is empty!");
                 ErrorsList.Add(log);
             }
             
@@ -193,7 +201,7 @@ namespace ProgramStarter.Helpers
             IsCancelled = true;
             HasErrors = true;
 
-            ErrorLog log = new ErrorLog(DateTime.Now, "x", "x", "Starting procedure cancelled by User");
+            ErrorLog log = new ErrorLog(DateTime.Now, LogNameProgramStarter, LogNameStartingProgramsHandler, "Starting procedure cancelled by User");
             ErrorsList.Add(log);
         }
         #endregion               
