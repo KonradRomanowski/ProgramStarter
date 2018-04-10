@@ -178,11 +178,24 @@ namespace ProgramStarter.Helpers
         /// <param name="_path">Path to program which needs to be started</param>
         private void StartProgram(string _path)
         {
-            //check if file exist
+            //Check if file exist
             if (File.Exists(_path))
             {
-                //Start the program from _path
-                Process program = Process.Start(_path);
+                ProcessStartInfo processInfo = new ProcessStartInfo();
+
+                //Check if file is an Excel sheet
+                if (FileIsExcelSheet(_path) && ExcelIsInstalled())
+                {
+                    processInfo.FileName = "Excel";
+                    processInfo.Arguments = _path;
+                    
+                    Process program = Process.Start(processInfo);
+                }
+                else
+                {
+                    //Start the program from _path
+                    Process program = Process.Start(_path);
+                }               
             }
             else
             {
@@ -204,6 +217,32 @@ namespace ProgramStarter.Helpers
             ErrorLog log = new ErrorLog(DateTime.Now, LogNameProgramStarter, LogNameStartingProgramsHandler, "Starting procedure cancelled by User");
             ErrorsList.Add(log);
         }
-        #endregion               
+        #endregion
+
+        #region CheckIfFileIsExcelSheet
+        /// <summary>
+        /// This method is checking if file is an Excel sheet
+        /// </summary>
+        /// <returns></returns>
+        private bool FileIsExcelSheet(string _path)
+        {            
+            string extenstion = Path.GetExtension(_path);
+
+            return (extenstion == ".xls" || extenstion == ".xlsx" || extenstion == ".xlsm") ? true : false;
+        }
+        #endregion
+
+        #region CheckIfExcelIsInstalled
+        /// <summary>
+        /// This method is checking if Excel software is installed on machine
+        /// </summary>
+        /// <returns></returns>
+        private bool ExcelIsInstalled()
+        {
+            Type officeType = Type.GetTypeFromProgID("Excel.Application");
+
+            return (officeType == null) ? false : true;
+        }
+        #endregion
     }
 }
