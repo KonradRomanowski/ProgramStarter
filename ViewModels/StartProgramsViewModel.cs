@@ -22,7 +22,7 @@ namespace ProgramStarter.ViewModels
     {
         #region Statics Definition
         //Version number and year of release
-        public static string VersionNumber { get { return "0.0.93"; } }
+        public static string VersionNumber { get { return "0.0.95"; } }
         public static string YearOfRelease { get { return "2018"; } }
 
         //Small and big window size
@@ -58,6 +58,7 @@ namespace ProgramStarter.ViewModels
         public ICommand SaveButtonCommand { get; private set; }
         public ICommand TryAgainButtonCommand { get; private set; }
         public ICommand ErrorLogButtonCommand { get; private set; }
+        public RelayCommand<Window> ThankYouButtonCommand { get; private set; }
         #endregion ButtonCommands
 
         #region Seconds_To_Start
@@ -440,6 +441,7 @@ namespace ProgramStarter.ViewModels
             SaveButtonCommand = new RelayCommand(SaveButtonClicked);
             TryAgainButtonCommand = new RelayCommand(TryAgainButtonClicked);
             ErrorLogButtonCommand = new RelayCommand(ErrorLogButtonClicked);
+            ThankYouButtonCommand = new RelayCommand<Window>(ThankYouButtonClicked);
 
             //Check if ProgramsToStartList is not empty then start counting seconds to start
             if (ProgramsToStartList.Any())
@@ -890,7 +892,18 @@ namespace ProgramStarter.ViewModels
             win.DataContext = vm;            
             win.Show();
         }
-        #endregion        
+        #endregion
+
+        #region ThankYou Button Clicked event
+
+        public void ThankYouButtonClicked(Window window)
+        {
+            if (window != null)
+            {
+                window.Close();
+            }
+        }
+        #endregion
 
         #region Drag and Drop methods for ProgramsToStartListView
 
