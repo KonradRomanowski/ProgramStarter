@@ -1,4 +1,5 @@
 ﻿<Window x:Class="ProgramStarter.Views.StartProgramsWindow"
+        x:Name="ProgramStarterMainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -73,6 +74,9 @@
                 <Button Grid.Column="0" x:Name="TryAgainNoErrors_Button" Content="Try Again" Margin="0 0 10 0" Command="{Binding TryAgainButtonCommand}" Visibility="{Binding FinalizeStartNoErrorsVisibility}"/>
                 <Button Grid.Column="0" x:Name="TryAgainErrors_Button" Content="Try Again" Margin="0 0 10 0" Command="{Binding TryAgainButtonCommand}" Visibility="{Binding FinalizeStartWithErrorsVisibility}"/>
                 <Button Grid.Column="1" x:Name="ErrorLog_Button" Content="Error Log" Margin="10 0 0 0" Command="{Binding ErrorLogButtonCommand}" Visibility="{Binding FinalizeStartWithErrorsVisibility}"/>
+                
+                <!-- Thank you button -->
+                <Button Grid.Column="1" x:Name="ThankYou_Button" Content="Thank You" Margin="10 0 0 0" Command="{Binding ThankYouButtonCommand}" CommandParameter="{Binding ElementName=ProgramStarterMainWindow}" Visibility="{Binding FinalizeStartNoErrorsVisibility}" />
 
             </Grid>
 
