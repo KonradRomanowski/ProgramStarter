@@ -22,7 +22,7 @@ namespace ProgramStarter.ViewModels
     {
         #region Statics Definition
         //Version number and year of release
-        public static string VersionNumber { get { return "0.0.95"; } }
+        public static string VersionNumber { get { return "0.0.94"; } }
         public static string YearOfRelease { get { return "2018"; } }
 
         //Small and big window size
